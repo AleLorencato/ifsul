@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Alterar Cor de Fundo</title>
+  </head>
+  <body>
+    <div id="colorBox" style="width: 200px; height: 200px"></div>
+    <input type="color" id="colorInput" />
+    <button type="submit" id="button">Mudar Cor de Fundo</button>
+    <script>
+      var colorInput = document.getElementById('colorInput')
+      var colorBox = document.getElementById('colorBox')
+      var button = document.getElementById('button')
+      button.addEventListener('click', function () {
+        colorBox.style.backgroundColor = colorInput.value
+      })
+    </script>
+  </body>
+</html>

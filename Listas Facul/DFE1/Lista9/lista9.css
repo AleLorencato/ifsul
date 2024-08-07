@@ -1,0 +1,100 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: #f2f2f2;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  color: #333;
+  text-align: center;
+}
+li {
+  margin: 10px;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+#card {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid gray;
+}
+a {
+  color: blue;
+  text-decoration: none;
+}
+
+a:hover {
+  color: red;
+}
+
+a:active {
+  color: green;
+}
+
+a:visited {
+  color: purple;
+}
+nav {
+  background-color: #ddd;
+}
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+}
+
+nav ul li {
+  padding: 10px;
+
+  margin-bottom: 10px;
+}
+nav ul ul {
+  display: none;
+  position: absolute;
+  padding: 0;
+  background-color: #f9f9f9;
+}
+nav ul ul li {
+  background-color: #ddd;
+  border-radius: 4px;
+}
+
+nav ul li:hover > ul {
+  display: block;
+}
+.sc-vm {
+  width: 200px;
+  padding-left: 0;
+}
+.vertical-menu {
+  padding-left: 0;
+}
+
+.vertical-menu li {
+  background-color: #eee;
+  display: block;
+  padding: 12px;
+  text-decoration: none;
+  margin: 0;
+}
+.vertical-menu li a {
+  text-decoration: none;
+  color: black;
+}
+
+.vertical-menu li:hover {
+  background-color: #ccc;
+}
+
+.vertical-menu li.active {
+  background-color: #04aa6d;
+  color: white;
+}

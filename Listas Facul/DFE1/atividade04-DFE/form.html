@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="nav-menu">
+      <ul>
+        <a href="index.html"><li>Página Inicial</li></a>
+        <a href="api.html"><li>API</li></a>
+        <a href="musica.html"><li>Musica</li></a>
+      </ul>
+    </header>
+    <main>
+      <section id="content">
+        <form action="#">
+          <input type="color" name="color" id="color" /> <br />
+          <input
+            type="url"
+            name="url"
+            id="url"
+            placeholder="Insira um Link qualquer"
+          />
+          <br />
+          <input type="range" name="range" id="range" />
+          <br />
+          <input type="time" name="time" id="time" /> <br />
+          <input type="text" name="nome" id="nome" placeholder="Nome" /> <br />
+          <input
+            type="text"
+            name="sobrenome"
+            id="sobrenome"
+            placeholder="sobrenome"
+            required
+          />
+          <br />
+          <input type="number" name="rg" id="rg" placeholder="RG" /> <br />
+          Insira no formato: 333.222.333-11 <br />
+          <input
+            type="text"
+            name="cpf"
+            id="cpf"
+            placeholder="CPF"
+            pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
+          />
+          <br />
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="E-mail"
+            required
+          />
+          <br />
+          <input
+            type="date"
+            name="dtnasc"
+            id="dtnasc"
+            placeholder="Data de Nascimento"
+            min="2005-01-31"
+          />
+          <br />
+          <input type="text" list="dtlist" placeholder="Cidade" />
+          <br />
+          <datalist id="dtlist">
+            <option value="Pelotas"></option>
+            <option value="Rio Grande"></option>
+            <option value="Porto Alegre"></option>
+            <option value="Jaguarão"></option>
+            <option value="Santa Maria"></option>
+            <option value="Gramado"></option>
+          </datalist>
+          <input type="submit" value="ENVIAR" />
+        </form>
+      </section>
+    </main>
+    <footer>
+      <p>© 2024 Alexandre Araújo</p>
+    </footer>
+  </body>
+</html>

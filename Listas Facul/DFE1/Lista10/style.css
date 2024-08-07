@@ -1,0 +1,23 @@
+p {
+  color: blue;
+}
+
+.classeTexto {
+  color: red;
+}
+
+#texto {
+  color: green;
+}
+
+.classeTexto {
+  color: orange !important;
+}
+
+body {
+  background-color: yellow;
+}
+
+div {
+  background-color: pink;
+}

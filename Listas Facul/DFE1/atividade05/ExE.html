@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      img [title~="carta"] {
+        border: 1px solid red;
+      }
+      img [title^="sequencia"] {
+        border: 1px solid black;
+      }
+      img [title$="carta"] {
+        border: 1px solid yellow;
+      }
+      img [title~="flor"] {
+        border: 1px solid green;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="../img/17_coringa.jpg" title="coringa carta" />
+    <img src="../img/cartasSequencia.jpg" title="sequencia de cartas" />
+    <img src="../img/sequenciaAs.jpg" title="ases em sequencia de cartas " />
+  </body>
+</html>

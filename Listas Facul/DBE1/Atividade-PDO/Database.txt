@@ -1,0 +1,42 @@
+CREATE DATABASE pdo;
+USE pdo;
+
+
+CREATE TABLE usuario (
+    codusuario INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(30) NOT NULL,
+    email VARCHAR(30) NOT NULL,
+    senha VARCHAR(15) DEFAULT '12345' NOT NULL,
+    reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE categoria (
+    idcategoria INT AUTO_INCREMENT NOT NULL,
+    nome VARCHAR(50) NOT NULL,
+    PRIMARY KEY(idcategoria)
+);
+
+
+CREATE TABLE produto (
+    idproduto INT AUTO_INCREMENT NOT NULL,
+    nome VARCHAR(50) NOT NULL,
+    descricao VARCHAR(100) NOT NULL,
+    quantidade DECIMAL NOT NULL,
+    idcategoria INT,
+    PRIMARY KEY(idproduto),
+    FOREIGN KEY (idcategoria) REFERENCES categoria(idcategoria)
+);
+
+
+INSERT INTO categoria (nome) VALUES ('Vegetais');
+INSERT INTO categoria (nome) VALUES ('Snacks');
+INSERT INTO categoria (nome) VALUES ('Bebidas');
+
+
+INSERT INTO produto (nome, descricao, quantidade, idcategoria) VALUES ('Batata', 'Batata Rosa', 10, 1);
+INSERT INTO produto (nome, descricao, quantidade, idcategoria) VALUES ('Cheetos', 'Queijo', 15, 2);
+INSERT INTO produto (nome, descricao, quantidade, idcategoria) VALUES ('Água com gás', 'Água da Pedra', 20, 3);
+
+INSERT INTO usuario (nome, email) VALUES ('Maria da Silva', 'maria@gmail.com');
+INSERT INTO usuario (nome, email) VALUES ('João da Silva', 'joao@gmail.com');
+INSERT INTO usuario (nome, email) VALUES ('José da Silva', 'jose@gmail.com');
