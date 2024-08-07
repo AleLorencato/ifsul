@@ -1,0 +1,25 @@
+body {
+  width: 50vw;
+}
+header {
+  background-color: blue;
+  padding: 20px;
+  text-align: center;
+}
+
+.container {
+  padding: 10px;
+  background-color: rgb(180, 180, 180);
+  width: 200px;
+  height: 200px;
+  text-align: center;
+  float: left;
+  margin: 10px 10px 10px 0;
+}
+
+footer {
+  padding: 20px;
+  background-color: darkgray;
+  clear: left;
+  text-align: center;
+}

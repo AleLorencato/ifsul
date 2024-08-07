@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Documento</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="nav-menu">
+      <ul>
+        <a href="index.html"><li>Página inicial</li></a>
+        <a href="form.html"><li>Formulário</li></a>
+        <a href="musica.html"><li>Musica</li></a>
+      </ul>
+    </header>
+    <main>
+      <button id="find-me" class="btn-primary">Mostrar minha localização</button
+      ><br />
+      <p id="status"></p>
+      <a id="map-link" target="_blank" class="map"></a>
+
+      <input type="text" id="nome" placeholder="Digite seu nome" />
+      <button onclick="armazenarNome()" class="btn-primary">
+        Armazenar Nome
+      </button>
+      <h2 id="mensagem"></h2>
+    </main>
+    <footer>
+      <p>© 2024 Alexandre Araújo</p>
+    </footer>
+    <script>
+      function geoFindMe() {
+        const status = document.querySelector("#status");
+        const mapLink = document.querySelector("#map-link");
+
+        mapLink.href = "";
+        mapLink.textContent = "";
+
+        function success(position) {
+          const latitude = position.coords.latitude;
+          const longitude = position.coords.longitude;
+
+          status.textContent = "";
+          mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
+          mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °`;
+        }
+
+        function error() {
+          status.textContent = "Não foi possível recuperar sua localização";
+        }
+
+        if (!navigator.geolocation) {
+          status.textContent =
+            "Geolocalização não é suportada pelo seu navegador";
+        } else {
+          status.textContent = "Localizando…";
+          navigator.geolocation.getCurrentPosition(success, error);
+        }
+      }
+
+      document.querySelector("#find-me").addEventListener("click", geoFindMe);
+
+      function armazenarNome() {
+        var nome = document.getElementById("nome").value;
+        localStorage.setItem("nome", nome);
+        document.getElementById("mensagem").innerHTML =
+          "Nome armazenado com sucesso!";
+      }
+      window.onload = function () {
+        var nome = localStorage.getItem("nome");
+        if (nome) {
+          document.getElementById("mensagem").innerHTML =
+            "Bem-vindo de volta, " + nome + "!";
+        }
+      };
+    </script>
+  </body>
+</html>

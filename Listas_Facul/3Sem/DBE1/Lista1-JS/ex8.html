@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Quem é maior</h1>
+    <script>
+      let maior = 0
+      let altura = prompt('Digite a altura da primeira pessoa')
+      let sexo1 = prompt(
+        'Digite o sexo da primeira pessoa: 1- masculino e 2- feminino'
+      )
+      if (sexo1 > 2 || sexo1 < 1) {
+        alert('Digite um número correto')
+      } else {
+        if (sexo1 == 1) {
+          sexo1 = 'masculino'
+        } else {
+          sexo1 = 'feminino'
+        }
+        maior = altura
+        altura = prompt('Digite a altura da segunda pessoa')
+        let sexo2 = prompt(
+          'Digite o sexo da segunda pessoa: 1- masculino e 2- feminino'
+        )
+        if (sexo2 > 2 || sexo2 < 1) {
+          alert('Digite um número correto')
+        } else {
+          if (sexo2 == 1) {
+            sexo2 = 'masculino'
+          } else {
+            sexo2 = 'feminino'
+          }
+          if (maior > altura) {
+            document.write(`A maior altura é ${maior}`)
+            document.write(`    O sexo é ${sexo1}`)
+          } else {
+            maior = altura
+            document.write(`A maior altura é ${maior}`)
+            document.write(`    O sexo é ${sexo2}`)
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

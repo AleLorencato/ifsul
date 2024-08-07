@@ -1,0 +1,55 @@
+.first {
+  /*Menor tamanho de fonte, com alto espaçamento entre as letras e escrito em caixa alta, contém sombreamento.   */
+  color: blue;
+  font-family: 'Roboto';
+  font-size: 20px;
+  font-style: oblique;
+  text-decoration: solid;
+  letter-spacing: normal;
+  word-spacing: 10px;
+  text-transform: uppercase;
+  text-shadow: 20px 20px 20px black;
+}
+.second {
+  /*pouco espaçamento entre as letras, escrito em itálico e espaçamento grande entre as palavras.   */
+  color: red;
+  font-size: 30px;
+  font-family: 'Open sans';
+  font-style: italic;
+  font-weight: lighter;
+  text-decoration: double;
+  letter-spacing: 2px;
+  word-spacing: 30px;
+  text-shadow: 5px black;
+}
+.third {
+  /*Fonte em negrito, cor verde e com underline.  */
+  color: green;
+  font-size: 40px;
+  font-family: 'Tac One';
+  font-weight: bold;
+  text-decoration: underline;
+  letter-spacing: 5px;
+  text-transform: lowercase;
+  border: 5px solid green;
+}
+.fourth {
+  /*Fonte em negrito forte, cor amarela e com underline.  */
+  color: yellow;
+  font-size: 50px;
+  font-family: 'Noto Sans JP';
+  font-weight: bolder;
+  text-decoration: dashed;
+  letter-spacing: 10px;
+  text-transform: capitalize;
+  text-shadow: 20px 20px 20px black;
+}
+.fifth {
+  /*Maior tamanho de fonte, com linha acima do texto e grande espaçamento entre as palavras, contém borda preta ao redor da caixa de texto */
+  color: purple;
+  font-size: 60px;
+  font-family: 'Oswald';
+  text-decoration: overline;
+  word-spacing: 60px;
+  border: 1px solid black;
+}

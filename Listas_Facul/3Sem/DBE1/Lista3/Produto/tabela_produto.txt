@@ -1,0 +1,10 @@
+CREATE table produto(
+codproduto int AUTO_INCREMENT NOT NULL,
+nomeprod varchar(50) NOT NULL,
+descprod varchar(100) NOT NULL,
+PRIMARY KEY(codproduto));
+
+
+insert into produto(nomeprod,descprod) values ('Batata','Batata Rosa');
+insert into produto(nomeprod,descprod) values ('Salgadinho','Cheetos');
+insert into produto(nomeprod,descprod) values ('Água com gás','Água da Pedra');
