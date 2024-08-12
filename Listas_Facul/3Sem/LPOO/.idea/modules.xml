@@ -3,16 +3,16 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Avaliacao/Avaliacao.iml" filepath="$PROJECT_DIR$/Avaliacao/Avaliacao.iml" />
-      <module fileurl="file://$PROJECT_DIR$/HerancaMultipla/HerancaMultipla.iml" filepath="$PROJECT_DIR$/HerancaMultipla/HerancaMultipla.iml" />
-      <module fileurl="file://$PROJECT_DIR$/HerancaMultipla2/HerancaMultipla2.iml" filepath="$PROJECT_DIR$/HerancaMultipla2/HerancaMultipla2.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/LPOO.iml" filepath="$PROJECT_DIR$/.idea/LPOO.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Lista1/Lista1.iml" filepath="$PROJECT_DIR$/Lista1/Lista1.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Lista1-HerancaSimples/Lista1-HerancaSimples.iml" filepath="$PROJECT_DIR$/Lista1-HerancaSimples/Lista1-HerancaSimples.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Lista2/Lista2.iml" filepath="$PROJECT_DIR$/Lista2/Lista2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Objetivo1-Lista1/Objetivo1-Lista1.iml" filepath="$PROJECT_DIR$/Objetivo1-Lista1/Objetivo1-Lista1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Objetivo1-Lista2/Objetivo1-Lista2.iml" filepath="$PROJECT_DIR$/Objetivo1-Lista2/Objetivo1-Lista2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Objetivo2-Lista1/Objetivo2-Lista1.iml" filepath="$PROJECT_DIR$/Objetivo2-Lista1/Objetivo2-Lista1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Objetivo2-Lista1-Multipla/Objetivo2-Lista1-Multipla.iml" filepath="$PROJECT_DIR$/Objetivo2-Lista1-Multipla/Objetivo2-Lista1-Multipla.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Objetivo2-Lista2-Multipla/Objetivo2-Lista2-Multipla.iml" filepath="$PROJECT_DIR$/Objetivo2-Lista2-Multipla/Objetivo2-Lista2-Multipla.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Objetivo2-Lista3-Polimorfismo/Objetivo2-Lista3-Polimorfismo.iml" filepath="$PROJECT_DIR$/Objetivo2-Lista3-Polimorfismo/Objetivo2-Lista3-Polimorfismo.iml" />
       <module fileurl="file://$PROJECT_DIR$/Objetivo3-Lista1/Objetivo3-Lista1.iml" filepath="$PROJECT_DIR$/Objetivo3-Lista1/Objetivo3-Lista1.iml" />
       <module fileurl="file://$PROJECT_DIR$/TesteHerança/TesteHerança.iml" filepath="$PROJECT_DIR$/TesteHerança/TesteHerança.iml" />
       <module fileurl="file://$PROJECT_DIR$/objetivo4_ale/objetivo4_ale.iml" filepath="$PROJECT_DIR$/objetivo4_ale/objetivo4_ale.iml" />
-      <module fileurl="file://$PROJECT_DIR$/polimorfismo/polimorfismo.iml" filepath="$PROJECT_DIR$/polimorfismo/polimorfismo.iml" />
     </modules>
   </component>
 </project>
