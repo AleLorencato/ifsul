@@ -11,7 +11,7 @@ public abstract class Animal {
 		this.y = y;
 	}
 
-	public void mover(double x, double y){
+	public void mover(double x, double y, double z){
 		this.x = x;
 		this.y = y;
 	}
