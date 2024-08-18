@@ -35,4 +35,4 @@ while ($linha = mysqli_fetch_assoc($resultado)) {
 <a href='../index.php'>Voltar </a> <br>
 <a href="buscar_usuario.php">Buscar Usuário</a> <br>
 <a href="editar_perfil.php">Editar Perfil</a> <br>
-<a href='../Produto/listar_produto.php'>Listagem de Produto</a>
+<a href='../Produto/index.php'>Cadastrar Produto </a>
