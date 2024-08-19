@@ -1,12 +1,12 @@
 <?php
 require_once 'query.php';
-require_once './conecta.php';
+require_once 'conecta.php';
 
 function iniciarSessao($usuario)
 {
     session_start();
     $_SESSION['logado'] = true;
-    $_SESSION['cod_pessoa'] = $usuario['codusuario'];
+    $_SESSION['codusuario'] = $usuario['codusuario'];
     $_SESSION['nome'] = $usuario['nome'];
 }
 
@@ -50,7 +50,22 @@ if (isset($_POST['deletar-conta'])) {
     session_destroy();
     header('location:../../Auth/login.php');
 }
-
+if (isset($_POST['alterar'])) {
+    $codusuario = $_POST['codusuario'];
+    $nome = $_POST['nome'];
+    $email = $_POST['email'];
+    $senha = $_POST['senha'];
+    $array = array($nome, $email, $senha, $codusuario);
+    $resultado = alterarUsuario($pdo, $array);
+    if ($resultado) {
+        echo "Alteração Efetuada com sucesso";
+        header('location: ../usuario/editar-perfil.php');
+    } else {
+        echo 'Código de erro:' . mysqli_errno($conexao) . '<br>';
+        echo 'Mensagem de erro:' . mysqli_error($conexao) . '<br>';
+        header('location: ./listagem_usuario.php');
+    }
+}
 
 function inserirUsuario($pdo, $array)
 {
@@ -71,13 +86,17 @@ function deletarUsuario($pdo, $array)
     return queryexecute($pdo, $query, $array);
 }
 
-
 function acessarUsuario($pdo, $array)
 {
     $query = "select * from usuario where email=? and senha=?";
     return queryFetch($pdo, $query, $array);
 }
 
+function buscarUsuario($pdo, $array)
+{
+    $query = "select * from usuario where codusuario = ?";
+    return queryFetch($pdo, $query, $array);
+}
 
 function listarUsuario($pdo)
 {

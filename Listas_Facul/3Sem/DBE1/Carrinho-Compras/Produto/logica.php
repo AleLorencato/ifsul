@@ -5,8 +5,7 @@ session_start();
 if (isset($_POST['cadprod'])) {
     $nomeprod = $_POST['nome'];
     $descprod = $_POST['desc'];
-    $preco = $_POST['preco'];
-    $sql = "INSERT INTO produto (nomeprod, descprod, preco) VALUES ('$nomeprod', '$descprod', '$preco')";
+    $sql = "INSERT INTO produto (nomeprod, descprod) VALUES ('$nomeprod', '$descprod')";
     $resultado = mysqli_query($conexao, $sql);
     header('Location: ./listar_produto.php');
 }
@@ -15,8 +14,7 @@ if (isset($_POST['alterar'])) {
     $nomeprod = $_POST['nome'];
     $descprod = $_POST['desc'];
     $codproduto = $_POST['codproduto'];
-    $preco = $_POST['preco'];
-    $sql = "UPDATE produto SET nomeprod='$nomeprod', descprod='$descprod', preco = '$preco' WHERE codproduto='$codproduto'";
+    $sql = "UPDATE produto SET nomeprod='$nomeprod', descprod='$descprod' WHERE codproduto='$codproduto'";
     $resultado = mysqli_query($conexao, $sql);
     header('Location: ./listar_produto.php');
 }
@@ -32,18 +30,13 @@ if (isset($_POST['adicionar'])) {
     $nomeprod = $_POST['nome'];
     $codproduto = $_POST['codproduto'];
     $quantidade = $_POST['quantidade'];
-    $preco = $_POST['preco'];
-
     if (!isset($_SESSION['carrinho'])) {
         $_SESSION['carrinho'] = array();
-        $_SESSION['total_carrinho'] = 0;
     }
     $encontrado = false;
     foreach ($_SESSION['carrinho'] as &$item) {
         if ($item['codigo'] == $codproduto) {
             $item['quantidade'] += $quantidade;
-            $item['preco'] = $preco;
-            $item['total'] = $item['quantidade'] * $preco;
             $encontrado = true;
             break;
         }
@@ -52,18 +45,10 @@ if (isset($_POST['adicionar'])) {
         $produto = array(
             'nome' => $nomeprod,
             'codigo' => $codproduto,
-            'quantidade' => $quantidade,
-            'preco' => $preco,
-            'total' => $quantidade * $preco
+            'quantidade' => $quantidade
         );
         $_SESSION['carrinho'][] = $produto;
     }
-    // Recalcular o total do carrinho
-    $_SESSION['total_carrinho'] = 0;
-    foreach ($_SESSION['carrinho'] as $item2) {
-        $_SESSION['total_carrinho'] += $item2['total'];
-    }
-
     header('Location: ./listar_produto.php');
 }
 if (isset($_POST['limpar'])) {

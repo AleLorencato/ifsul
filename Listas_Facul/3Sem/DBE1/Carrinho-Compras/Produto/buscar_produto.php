@@ -11,4 +11,4 @@ include "logica.php";
     </form>
 </section>
 
-<a href='listar_produto.php'>Voltar</a>
+<a href='index.php'>Voltar</a>

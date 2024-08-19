@@ -24,8 +24,6 @@ if (isset($_POST['pesquisar'])) {
   $nome = $_POST['nome'];
   $array = array($nome);
   $produtos = buscarProduto($pdo, $nome);
-  echo "Produtos encontrados:<br>";
-  print_r($produtos); // Adicionado para depuração
   $_SESSION['produtos'] = $produtos;
   header('Location: ../produto/listar-produto.php');
 }
@@ -38,28 +36,31 @@ if (isset($_POST['alterar'])) {
   $idcategoria = $_POST['idcategoria'];
   $array = array($nome, $descricao, $quantidade, $idcategoria, $idproduto);
   alterarProduto($pdo, $array);
-  header('Location: ./listar_produto.php');
+  header('Location: ../produto/editar-produto.php');
 }
 
 if (isset($_POST['excluir'])) {
   $idproduto = $_POST['idproduto'];
   $array = array($idproduto);
   excluirProduto($pdo, $array);
-  header('Location: ./listar_produto.php');
+  header('Location: ../produto/editar-produto.php');
 }
 
-if (isset($_POST['limpar'])) {
-  session_start();
-  unset($_SESSION['carrinho']);
-  header('Location: ./listar_produto.php');
+
+
+
+function listarProdutos($pdo)
+{
+  $query = "SELECT * FROM produto";
+  $produtos = queryFetchAll($pdo, $query);
+  return $produtos;
 }
+
 function buscarProduto($pdo, $nome)
 {
   $query = "SELECT * FROM produto WHERE nome LIKE ?";
   $array = array("%$nome%");
   $result = queryFetch($pdo, $query, $array);
-  echo "Resultado da busca:<br>";
-  print_r($result); // Adicionado para depuração
   return $result;
 }
 

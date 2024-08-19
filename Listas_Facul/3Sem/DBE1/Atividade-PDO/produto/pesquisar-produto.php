@@ -11,3 +11,5 @@ include "../logic/logica-produto.php";
 
 <a href="cadastro-categoria.php">Cadastrar Categoria</a><br>
 <a href="cadastro-produto.php">Cadastrar Produto</a><br>
+<a href="editar-produto.php">Editar Produto</a>
+<a href="../usuario/editar-perfil.php">Editar Perfil</a>

@@ -1,6 +1,6 @@
-CREATE DATABASE carrinho;
+CREATE DATABASE aula;
 
-USE carrinho;
+USE aula;
 
 CREATE TABLE pessoa (
 codpessoa INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -16,14 +16,13 @@ CREATE table produto(
 codproduto int AUTO_INCREMENT NOT NULL,
 nomeprod varchar(50) NOT NULL,
 descprod varchar(100) NOT NULL,
-preco decimal NOT NULL,
 PRIMARY KEY(codproduto));
 
 
-insert into produto(nomeprod,descprod,preco) values ('Batata','Batata Rosa', 10.99);
-insert into produto(nomeprod,descprod,preco) values ('Salgadinho','Cheetos', 6.99);
-insert into produto(nomeprod,descprod,preco) values ('Água com gás','Água da Pedra', 2);
+insert into produto(nomeprod,descprod) values ('Batata','Batata Rosa');
+insert into produto(nomeprod,descprod) values ('Salgadinho','Cheetos');
+insert into produto(nomeprod,descprod) values ('Água com gás','Água da Pedra');
 
 insert into pessoa (nome,email,cpf) values ('Maria da Silva','maria@gmail.com','12345678901');
 insert into pessoa (nome,email,cpf) values ('João da Silva','joao@gmail.com','12345678901');
-insert into pessoa (nome,email,cpf) values ('José da Silva','jose@gmail.com','12345678901');
+insert into pessoa (nome,email,cpf) values ('José da Silva','jose@gmail.com','12345678901');a
