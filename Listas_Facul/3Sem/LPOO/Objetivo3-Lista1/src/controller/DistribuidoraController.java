@@ -1,40 +1,93 @@
 package controller;
-import model.distribuidora.Fornecedor;
-import model.distribuidora.Fornecimento;
-import model.distribuidora.Produto;
-import java.math.BigDecimal;
-import java.text.NumberFormat;
-import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.List;
+
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+
 public class DistribuidoraController {
 		public static void main(String[] args) {
-			Fornecedor f1 = new Fornecedor("89.555.478/9999-10",
-					"Luva Cia & Amigos", "luvadepedreiro",
-					"luvadepedreiro@gmail.com", "53999654122", null);
+			//a)
+			Long timestamp = 1723066578101L;
 
-			Produto p1 = new Produto("PSIT56", "Mamão", "Papaya", 15,
-					BigDecimal.valueOf(13.0), BigDecimal.valueOf(18.9), List.of(f1));
-			Produto p2 = new Produto("PSIT56", "Chuchu", "Verde", 50, BigDecimal.valueOf(5.0), BigDecimal.valueOf(8.9), List.of(f1));
+			Instant hora = Instant.ofEpochMilli(timestamp);
 
-			Fornecimento fr1 = new Fornecimento(LocalDateTime.of
-					(2024, 8, 6, 10, 43),
-					15, p1.getPrecoDeCompra().multiply(BigDecimal.valueOf(100)),
-					f1, p1);
-			Fornecimento fr2 = new Fornecimento(LocalDateTime.of
-					(2024, 8, 4, 23, 52),
-					15, p2.getPrecoDeCompra().multiply(BigDecimal.valueOf(100))
-					, f1, p2);
+			LocalDateTime dateTime = LocalDateTime.ofInstant(hora, ZoneOffset.UTC);
 
-			List<Fornecimento> fornecimentos = Arrays.asList(fr1, fr2);
-			BigDecimal total = BigDecimal.ZERO;
-			for (Fornecimento fornecimento : fornecimentos) {
-				total = total.add(fornecimento.getTotal());
-			}
-			System.out.println("\nRelatório de fornecimentos");
-			System.out.println(fornecimentos);
-			System.out.println("Total de fornecimentos= "
-					+ NumberFormat.getCurrencyInstance().format(total));
+			String formattedDateTime = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
+					.format(dateTime);
+
+			System.out.println(formattedDateTime);
+
+
+			//b)
+			LocalDateTime dateTime1 = LocalDateTime.ofInstant(hora,
+					ZoneId.of("UTC-3"));
+
+			String formattedDateTime1 = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
+					.format(dateTime1);
+
+			System.out.println(formattedDateTime1);
+
+			LocalDateTime dateTime2 = LocalDateTime.ofInstant(hora,
+					ZoneId.of("UTC+1"));
+
+			String formattedDateTime2 = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
+					.format(dateTime2);
+
+			System.out.println(formattedDateTime2);
+
+			//c)
+			LocalDateTime dateTime3 = LocalDateTime.ofInstant(hora,
+					ZoneId.of("America/Sao_Paulo"));
+
+			String formattedDateTime3 = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
+					.format(dateTime3);
+
+			System.out.println(formattedDateTime3);
+
+			LocalDateTime dateTime4 = LocalDateTime.ofInstant(hora,
+					ZoneId.of("Europe/Paris"));
+
+			String formattedDateTime4 = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
+					.format(dateTime4);
+
+			System.out.println(formattedDateTime4);
+
+			//Existe diferença entre o UTC e o Horário local,
+			// pois no horário local o horário pode ser diferente por
+			// razões de horário de verão por exemplo.
+			// Já o UTC é somente o deslocamente em relação ao UTC 0
+
+			//d)
+
+			LocalDate date = LocalDate.parse("2024-08-07");
+			System.out.println(DateTimeFormatter.ofPattern("dd/MM/yyyy").format(date));
+
+
+			//e)
+
+			LocalTime time = LocalTime.parse("14:05");
+			System.out.println(DateTimeFormatter.ofPattern("HH:mm").format(time));
+
+			//f)
+			LocalDate hoje = LocalDate.now();
+			LocalDate date1 = LocalDate.parse("1822-09-07");
+			System.out.println(DateTimeFormatter.ofPattern("dd/MM/yyyy").format(date1));
+			Period periodo = Period.between(date1, hoje);
+			System.out.printf("Tempo: %s anos, %s meses, %s dias",
+					periodo.getYears(),periodo.getMonths(),
+					periodo.getDays());
+
+			//g)
+
+			//h
+
+			LocalDateTime dateTime5 = LocalDateTime.parse("2014/12/06 17:00");
+
+			String formattedDateTime5 = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")
+					.format(dateTime5);
+
+			System.out.println(formattedDateTime5);
+
 		}
 	}
 
