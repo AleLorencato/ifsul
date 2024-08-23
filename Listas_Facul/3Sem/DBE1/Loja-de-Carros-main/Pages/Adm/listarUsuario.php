@@ -3,9 +3,9 @@
 
 <head>
     <?php
-    include_once("../../Includes/componentes/cabecalho.php");
-    include_once("../../Includes/Funcoes/funcoes_cliente.php");
-    include_once("../../Includes/conecta.php");
+    include_once ("../../Includes/componentes/cabecalho.php");
+    include_once ("../../Includes/Funcoes/funcoes_cliente.php");
+    include_once ("../../Includes/conecta.php");
     ?>
     <title>Listar Usuário</title>
     <link rel="stylesheet" href="../../Styles/pages.css">
@@ -58,7 +58,7 @@
         }
         ?>
     </main>
-    <?php require('../Includes/componentes/footer_comp'); ?>
+    <?php require ('../Includes/componentes/footer_comp'); ?>
 </body>
 
 

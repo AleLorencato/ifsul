@@ -19,7 +19,7 @@
         <h3> Listagem dos Vendedores </h3>
         <?php
         $pessoas = listarVendedor($conexao);
-        if (empty ($pessoas)) {
+        if (empty($pessoas)) {
             ?>
             <section>
                 <p>Não há Vendedores cadastrados.</p>

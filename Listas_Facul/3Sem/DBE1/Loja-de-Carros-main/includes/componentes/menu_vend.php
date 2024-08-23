@@ -1,5 +1,4 @@
-<footer id='footer'>
-        <div id='catEye'></div>
+<header id='header'>
         <nav id='menu'>
                 <ul id='listaMenu'>
                         <li><a href="../../Auth/cadastro-adm.php">Cadastrar Vendedor</a></li>
@@ -13,4 +12,4 @@
                         </form>
                 </ul>
         </nav>
-</footer>
+</header>
