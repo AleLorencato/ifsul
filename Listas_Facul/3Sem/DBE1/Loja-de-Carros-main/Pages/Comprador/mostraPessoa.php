@@ -3,20 +3,16 @@
 
 <head>
     <?php
-    include_once ("../../Includes/componentes/cabecalho.php");
-    include_once ('./funcoes_pessoa.php');
-    include_once ("../../Includes/conecta.php");
+    include_once("../../includes/componentes/cabecalho.php");
+    include_once('../../includes/Funcoes/funcoes_cliente.php');
+    include_once("../../includes/conecta.php");
+    $codcliente = $_SESSION['cod_pessoa'];
+    $array = array($codcliente);
+    $pessoa = buscarCliente($conexao, $array);
     ?>
     <title>Listar Usuário</title>
     <link rel="stylesheet" href="../../Styles/pages.css">
 </head>
-<!-- Página não está sendo utilizada no momento -->
-<!-- Página não está sendo utilizada no momento -->
-<!-- Página não está sendo utilizada no momento -->
-<!-- Página não está sendo utilizada no momento -->
-<!-- Página não está sendo utilizada no momento -->
-<!-- Página não está sendo utilizada no momento -->
-<!-- Página não está sendo utilizada no momento -->
 
 <body>
 
@@ -28,12 +24,31 @@
         <p>Email:
             <?php echo $pessoa['email']; ?>
         </p>
-        <form action="../../Includes/logica_vendedor.php" method="post">
-            <button type="submit" name="editar" value="<?php echo $pessoa['codcliente']; ?>"> Editar </button>
-            <button type="submit" name="deletar" value="<?php echo $pessoa['codcliente']; ?>"> Deletar </button>
-        </form>
-        <a href="../Vendedor/listarCarros-adm.php">Voltar</a>
+        <p>Foto de Perfil:</p>
+        <img src="../../uploads/<?php echo $pessoa['image']; ?>" alt="Foto de Perfil" width="150" height="150">
+        <p>Localização:</p>
+        <p id="location"></p>
+        <button id="get-location" class="btn-small">Obter Localização</button>
+
+        <a href="./alterarPerfil.php" class="btn-small">Editar Perfil</a>
+
+        <a href="../Comprador/listarCarros.php" class="btn-small">Voltar</a>
     </main>
+    <script>
+        document.getElementById('get-location').addEventListener('click', function() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                alert('Geolocalização não é suportada pelo seu navegador.');
+            }
+        });
+
+        function showPosition(position) {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+            document.getElementById('location').textContent = `Latitude: ${latitude}, Longitude: ${longitude}`;
+        }
+    </script>
 </body>
 
 </html>

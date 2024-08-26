@@ -1,15 +1,19 @@
 <header id='header'>
-        <nav id='menu'>
-                <ul id='listaMenu'>
-                        <li><a href="../../Auth/cadastro-adm.php">Cadastrar Vendedor</a></li>
-                        <li><a href="../../Pages/Vendedor/listarVendedor.php">Ver Vendedores da Loja</a></li>
-                        <li><a href="../../Pages/Comprador/index_pesquisarPessoa.php">Pesquisar Cliente</a></li>
-                        <li><a href="../../Pages/Veiculo/adicionar_veiculo.php">Adicionar Veículo</a></li>
-                        <li><a href="altera_perfil_vend.php">Alterar Perfil de Vendedor</a></li>
-                        <li><a href="../../Pages/Vendedor/excluirConta_cliente.php">Excluir Conta de Clientes</a></li>
-                        <form action="../../Includes/logica_vendedor.php" method="post">
-                                <button type="submit" name="sair" value="Sair">Sair</button>
-                        </form>
-                </ul>
-        </nav>
+    <nav id='menu'>
+        <ul id='listaMenu'>
+            <li><a href="../../Pages/Veiculo/adicionar_veiculo.php">Adicionar Veículo</a></li>
+            <li><a href="../../Pages/Vendedor/listarVendedor.php">Ver Vendedores da Loja</a></li>
+            <li><a href="../../Pages/Vendedor/mostraPerfilVend.php">Mostrar Perfil</a></li>
+            <li>
+                <form action="../../includes/logica/logica_vendedor.php" method="post">
+                    <button type="submit" name="sair" style="background:none;border:none;padding:0;margin:0;color:inherit;cursor:pointer;height:100%;align-items:center;">
+                        <a style="height:100%;" class="valign-wrapper">Sair</a>
+                    </button>
+                </form>
+            </li>
+            <li class="right" style="margin-right:1rem;">
+                <h3>Olá, <?php echo $_SESSION['nome']; ?> </h3>
+            </li>
+        </ul>
+    </nav>
 </header>

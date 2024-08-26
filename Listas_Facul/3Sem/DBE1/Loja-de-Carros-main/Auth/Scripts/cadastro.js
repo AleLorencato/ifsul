@@ -72,3 +72,4 @@ function validaCPF(event) {
     event.preventDefault()
   }
 }
+

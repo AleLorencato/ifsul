@@ -48,6 +48,7 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  gap: 1rem;
 }
 .btn-primary {
   background-color: var(--light-blue);
@@ -175,4 +176,16 @@ svg {
 .card-button:hover {
   border: 1px solid #ffcaa6;
   background-color: #ffcaa6;
+}
+
+@media only screen and (min-width: 993px) {
+  nav ul li a.sidenav-trigger {
+    display: block;
+  }
+}
+
+nav ul li a {
+  font-size: 1.2rem;
+  color: var(--white);
+  text-decoration: none;
 }

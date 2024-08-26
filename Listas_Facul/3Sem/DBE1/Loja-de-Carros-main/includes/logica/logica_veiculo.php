@@ -5,7 +5,6 @@ require_once('../Funcoes/funcoes_veiculo.php');
 
 
 if (isset($_POST['editar-carro'])) {
-
     $codveiculo = $_POST['editar-carro'];
     $array = array($codveiculo);
     $carro = buscarVeiculo($conexao, $array);

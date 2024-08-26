@@ -3,10 +3,10 @@
 
 <head>
     <?php
-    include_once ("../../Includes/componentes/cabecalho.php");
-    include_once ('../../Includes/logica/funcoes_veiculo.php');
-    include_once ("../../Includes/conecta.php");
-    include_once ('../../Includes/logica/logica_cliente.php');
+    include_once("../../includes/componentes/cabecalho.php");
+    include_once('../../includes/Funcoes/funcoes_veiculo.php');
+    include_once("../../includes/conecta.php");
+    include_once("../../includes/logica/logica_veiculo.php")
     ?>
     <title>Alterar Veículo</title>
     <link rel="stylesheet" href="../../Styles/pages.css">
@@ -23,7 +23,7 @@
                 <?php echo $carro['modelo']; ?>
             </p>
 
-            <form action="../../Includes/logica/logica_veiculo.php" method="post">
+            <form action="../../includes/logica/logica_veiculo.php" method="post">
                 <p><label for="preco">Preco: </label><input type="text" name="preco" id="preco"
                         value="<?php echo $carro['preco']; ?>"></p>
                 <input type="hidden" id='codveiculo' name='codveiculo' value="<?php echo $carro['codveiculo']; ?>">

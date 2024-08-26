@@ -4,11 +4,13 @@ include_once("../../Includes/Funcoes/funcoes_veiculo.php");
 include_once("../../Includes/Funcoes/funcoes_cliente.php");
 include_once("../../Includes/conecta.php");
 
-// Capturar os valores dos filtros
+
 $preco_min = isset($_POST['preco-min']) ? $_POST['preco-min'] : 0;
 $preco_max = isset($_POST['preco-max']) ? $_POST['preco-max'] : PHP_INT_MAX;
+$codcliente = $_SESSION['cod_pessoa'];
+$array = array($codcliente);
+$pessoa = buscarCliente($conexao, $array);
 
-// Listar carros com base nos filtros
 $carros = filtrarVeiculo($conexao, array($preco_min, $preco_max));
 ?>
 <!DOCTYPE html>
@@ -23,19 +25,15 @@ $carros = filtrarVeiculo($conexao, array($preco_min, $preco_max));
 </head>
 
 <body>
-    <!-- Sidenav Trigger -->
-    <a href="#" data-target="slide-out" class="sidenav-trigger btn">Filtros</a>
 
-    <!-- Sidenav -->
     <ul id="slide-out" class="sidenav">
         <li>
             <div class="user-view">
                 <div class="background">
-                    <img src="https://materializecss.com/images/office.jpg">
+                    <img src="../../uploads/Fundo-filtro.jpg">
                 </div>
-                <a href="#user"><img class="circle" src="https://materializecss.com/images/yuna.jpg"></a>
-                <a href="#name"><span class="white-text name">John Doe</span></a>
-                <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+                <a href="#user"><img class="circle" src="../../uploads/<?php echo $pessoa['image']; ?>"></a>
+
             </div>
         </li>
         <li><a href="#!"><i class="material-icons">filter_list</i>Filtros</a></li>

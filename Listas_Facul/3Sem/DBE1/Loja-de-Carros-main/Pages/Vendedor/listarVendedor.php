@@ -13,9 +13,6 @@
 <body>
 
     <main>
-        <h2> Usuário Logado:
-            <?php echo $_SESSION['nome']; ?>
-        </h2>
         <h3> Listagem dos Vendedores </h3>
         <?php
         $pessoas = listarVendedor($conexao);

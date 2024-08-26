@@ -2,14 +2,13 @@
 require_once 'query.php';
 function inserirCliente($conexao, $array)
 {
-  $query = "insert into cliente (nome, email, senha) values (?, ?, ?)";
+  $query = "insert into cliente (nome, email, senha, image) values (?, ?, ?, ?)";
   return queryexecute($conexao, $query, $array);
 }
 
-
 function alterarCliente($conexao, $array)
 {
-  $query = "update cliente set nome= ?, email = ?, senha= ? where codcliente = ?";
+  $query = "update cliente set nome= ?, email = ?, senha= ?, image = ? where codcliente = ?";
   return queryexecute($conexao, $query, $array);
 }
 
