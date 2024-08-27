@@ -50,31 +50,15 @@ body {
   align-items: center;
   gap: 1rem;
 }
-.btn-primary {
-  background-color: var(--light-blue);
-  height: 3.2rem;
-  width: 9.3rem;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
 
-.btn-secondary {
-  height: 3.2rem;
-  width: 18.3rem;
-  color: #1d2125;
-  background-color: var(--secondary);
-  border-color: var(--secondary);
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
-
-.btn-secondary:hover {
-  background-color: #a9adb1;
-}
 #buy-car {
   border-radius: 0.6rem;
   border: none;
   color: rgb(255, 255, 255);
+}
+
+.input-field {
+  padding: 0.5rem;
 }
 
 p {
@@ -105,6 +89,9 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+/* card */
+
 .cd-sec {
   width: 28rem;
 }
@@ -130,11 +117,6 @@ a {
   padding-top: 10%;
 }
 
-svg {
-  width: 20px;
-  height: 20px;
-}
-
 .card-footer {
   width: 100%;
   display: flex;
@@ -144,7 +126,12 @@ svg {
   border-top: 1px solid #ddd;
 }
 
+svg {
+  width: 20px;
+  height: 20px;
+}
 /*Text*/
+
 .text-title {
   font-weight: 900;
   font-size: 2.2rem;
@@ -166,6 +153,28 @@ svg {
   transition: 0.3s ease-in-out;
 }
 
+.btn-primary {
+  background-color: var(--light-blue);
+  height: 3.2rem;
+  width: 9.3rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.btn-secondary {
+  height: 3.2rem;
+  width: 18.3rem;
+  color: #1d2125;
+  background-color: var(--secondary);
+  border-color: var(--secondary);
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.btn-secondary:hover {
+  background-color: #a9adb1;
+}
+
 /*Hover*/
 .card-img:hover {
   transform: translateY(-25%);
@@ -178,6 +187,7 @@ svg {
   background-color: #ffcaa6;
 }
 
+/* navbar */
 @media only screen and (min-width: 993px) {
   nav ul li a.sidenav-trigger {
     display: block;
@@ -188,4 +198,21 @@ nav ul li a {
   font-size: 1.2rem;
   color: var(--white);
   text-decoration: none;
+}
+
+.icon-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+nav ul li a i.material-icons {
+  font-size: 3.5rem;
+}
+nav ul {
+  height: 100%;
+}
+nav ul li {
+  height: 100%;
 }

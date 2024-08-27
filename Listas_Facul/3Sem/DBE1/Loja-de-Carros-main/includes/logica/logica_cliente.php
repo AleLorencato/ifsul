@@ -21,10 +21,13 @@ if (isset($_POST['cadastrar'])) {
     $image = $_FILES['image']['name'];
     $target = "../../uploads/" . basename($image);
     move_uploaded_file($_FILES['image']['tmp_name'], $target);
+
     $array = array($nome, $email, $senha, $image);
+
     inserirCliente($conexao, $array);
     $array = array($email, $senha);
     $pessoa = acessarCliente($conexao, $array);
+
     iniciarSessao($pessoa);
     header('location:../../Pages/Comprador/listarCarros.php');
 }
@@ -59,6 +62,7 @@ if (isset($_POST['editar'])) {
     $pessoa = buscarCliente($conexao, $array);
     require_once('../../Pages/Comprador/alterarPessoa.php');
 }
+
 if (isset($_POST['editar2'])) {
     $codpessoa = $_POST['editar2'];
     $array = array($codpessoa);
@@ -82,7 +86,6 @@ if (isset($_POST['alterar'])) {
     $email = $_POST['email'];
     $senha = $_POST['senha'];
 
-    // Processar upload da imagem
     if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
         $image = $_FILES['image']['name'];
         $target_dir = "../../uploads/";

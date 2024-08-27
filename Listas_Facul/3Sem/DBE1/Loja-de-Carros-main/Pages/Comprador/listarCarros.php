@@ -17,11 +17,8 @@ $carros = filtrarVeiculo($conexao, array($preco_min, $preco_max));
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listar Veículos</title>
     <link rel="stylesheet" href="../../Styles/pages.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 </head>
 
 <body>
@@ -33,7 +30,6 @@ $carros = filtrarVeiculo($conexao, array($preco_min, $preco_max));
                     <img src="../../uploads/Fundo-filtro.jpg">
                 </div>
                 <a href="#user"><img class="circle" src="../../uploads/<?php echo $pessoa['image']; ?>"></a>
-
             </div>
         </li>
         <li><a href="#!"><i class="material-icons">filter_list</i>Filtros</a></li>

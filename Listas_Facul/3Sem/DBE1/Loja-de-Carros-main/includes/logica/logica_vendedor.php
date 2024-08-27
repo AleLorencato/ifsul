@@ -26,21 +26,6 @@ if (isset($_POST['cadastrar-adm'])) {
   header('location:../../Pages/Vendedor/listarCarros-adm.php');
 }
 
-if (isset($_POST['entrar-adm'])) {
-
-  $email = $_POST['email'];
-  $senha = $_POST['senha'];
-  $array = array($email, $senha);
-  $pessoa = acessarVendedor($conexao, $array);
-
-  if ($pessoa) {
-    iniciarSessao($pessoa);
-    header('location:../../Pages/Vendedor/listarCarros-adm.php');
-  } else {
-    header('location:../../Auth/login-adm.php');
-  }
-}
-
 if (isset($_POST['alterar-vendedor'])) {
   $codvendedor = $_POST['codvendedor'];
   $nome = $_POST['nome'];
@@ -48,7 +33,6 @@ if (isset($_POST['alterar-vendedor'])) {
   $cpf = $_POST['cpf'];
   $senha = $_POST['senha'];
 
-  // Processar upload da imagem
   if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
     $image = $_FILES['image']['name'];
     $target_dir = "../../uploads/";
@@ -64,18 +48,7 @@ if (isset($_POST['alterar-vendedor'])) {
 }
 
 
-if (isset($_POST['cadastrar-adm'])) {
-  $nome = $_POST['nome'];
-  $email = $_POST['email'];
-  $cpf = $_POST['cpf'];
-  $senha = $_POST['senha'];
-  $array = array($nome, $email, $cpf, $senha);
-  inserirVendedor($conexao, $array);
-  $array = array($email, $senha);
-  $pessoa = acessarVendedor($conexao, $array);
-  iniciarSessao($pessoa);
-  header('location:../../Pages/Vendedor/listarCarros-adm.php');
-}
+
 
 if (isset($_POST['entrar-adm'])) {
 
@@ -90,17 +63,6 @@ if (isset($_POST['entrar-adm'])) {
   } else {
     header('location:../../Auth/login-adm.php');
   }
-}
-
-if (isset($_POST['alterar-vendedor'])) {
-  $codpessoa = $_POST['codvendedor'];
-  $nome = $_POST['nome'];
-  $email = $_POST['email'];
-  $cpf = $_POST['cpf'];
-  $senha = $_POST['senha'];
-  $array = array($nome, $email, $cpf, $senha, $codpessoa);
-  alterarVendedor($conexao, $array);
-  header('location:../../Pages/Vendedor/listarCarros-adm.php');
 }
 
 if (isset($_POST['sair'])) {
