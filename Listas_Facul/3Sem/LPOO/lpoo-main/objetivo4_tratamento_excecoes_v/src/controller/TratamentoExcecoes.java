@@ -46,10 +46,10 @@ public class TratamentoExcecoes {
 	}
 
 	private static void medodo1() {
-		metodo2(); //chamada o metodo2, e empilha o medodo1() na Pilha de Execução
+//		metodo2(); //chamada o metodo2, e empilha o medodo1() na Pilha de Execução
 
 		//lança uma Exceção NÃO Verificada
-		mythrowExceptionNaoVerificada(); //chama o método para testar esse tipo de exceção
+//		mythrowExceptionNaoVerificada(); //chama o método para testar esse tipo de exceção
 
 		//lança uma Exceção VERIFICADA
 		//Resposta a questão 9: demonstra o uso do try-catch-finally
@@ -79,6 +79,7 @@ public class TratamentoExcecoes {
 
 		// Resposta a questão 2: Quando há um erro de input no terminal, por exemplo.
 //		Scanner entrada = new Scanner(System.in);
+//		System.out.println("Digite um número inteiro: ");
 //		int numero = entrada.nextInt(); //experimente colocando uma letra no lugar de um número para lançar a exceção
 
 	}
