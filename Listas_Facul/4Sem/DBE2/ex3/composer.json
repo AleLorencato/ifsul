@@ -1,0 +1,13 @@
+{
+    "name": "alexa/ex3",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Alexa\\Ex3\\": "src/"
+        }
+    },
+    "scripts": {
+        "start": "php -S localhost:8000 -t src/"
+    },
+    "require": {}
+}
