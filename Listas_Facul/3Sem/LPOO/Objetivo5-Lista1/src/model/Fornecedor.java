@@ -1,4 +1,5 @@
 package model;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,8 @@ public class Fornecedor {
 	public Fornecedor() {
 	}
 
-	public Fornecedor(String cnpj, String razaoSocial, String nomeFantasia, String email, String telefone, List<Produto> produtos) {
+	public Fornecedor(String cnpj, String razaoSocial, String nomeFantasia, String email, String telefone,
+			List<Produto> produtos) {
 		this.cnpj = cnpj;
 		this.razaoSocial = razaoSocial;
 		this.nomeFantasia = nomeFantasia;
@@ -82,4 +84,3 @@ public class Fornecedor {
 				'}';
 	}
 }
-

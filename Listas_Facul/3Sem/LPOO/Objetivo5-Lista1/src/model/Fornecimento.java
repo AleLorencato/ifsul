@@ -13,7 +13,8 @@ public class Fornecimento {
 	public Fornecimento() {
 	}
 
-	public Fornecimento(LocalDateTime data, Integer quantidade, BigDecimal total, Fornecedor fornecedor, Produto produto) {
+	public Fornecimento(LocalDateTime data, Integer quantidade, BigDecimal total, Fornecedor fornecedor,
+			Produto produto) {
 		this.data = data;
 		this.quantidade = quantidade;
 		this.total = total;
@@ -72,4 +73,3 @@ public class Fornecimento {
 				+ "\n";
 	}
 }
-

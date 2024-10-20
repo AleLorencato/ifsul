@@ -15,7 +15,8 @@ public class Produto {
 	public Produto() {
 	}
 
-	public Produto(String sku, String nome, String descricao, Integer quantidade, BigDecimal precoDeCompra, BigDecimal precoDeVenda, List<Fornecedor> fornecedores) {
+	public Produto(String sku, String nome, String descricao, Integer quantidade, BigDecimal precoDeCompra,
+			BigDecimal precoDeVenda, List<Fornecedor> fornecedores) {
 		this.sku = sku;
 		this.nome = nome;
 		this.descricao = descricao;
@@ -94,4 +95,3 @@ public class Produto {
 				'}';
 	}
 }
-
