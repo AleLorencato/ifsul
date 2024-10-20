@@ -45,4 +45,13 @@ abstract class Pessoa
 		return $this->idade;
 	}
 
+	function __toString(): string
+	{
+		return "\n===Dados da Pessoa==="
+			. "\nNome: $this->nome"
+			. ($this->idade ? "\nIdade: $this->idade" : "")
+			. "\nPessoa: $this->peso"
+			. "\nAltura: $this->altura";
+	}
+
 }
