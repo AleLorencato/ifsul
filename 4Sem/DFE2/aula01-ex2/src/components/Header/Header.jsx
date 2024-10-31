@@ -21,7 +21,7 @@ export default function Header() {
               key={tab.label}
               className={`${
                 tab.isRightAligned ? 'ml-auto' : ''
-              } flex justify-center p-2 border border-zinc-300 hover:bg-zinc-600 rounded full`}
+              } flex justify-center p-2 border border-zinc-300 hover:bg-zinc-600 rounded-full`}
             >
               {tab.label}
             </li>
