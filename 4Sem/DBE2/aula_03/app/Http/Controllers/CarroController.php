@@ -34,4 +34,25 @@ class CarroController extends Controller
             ]
         );
     }
+
+    public function show($id)
+    {
+        return view(
+            'listarcarros',
+            [
+                'carros' => $this->carro->find($id),
+                'motos' => $this->moto->find($id),
+                'users' => $this->user->find($id)
+            ]
+        );
+    }
+
+    public function create(Request $request)
+    {
+        $this->carro->create($request->all());
+        return redirect('carros');
+    }
+
+
+
 }
