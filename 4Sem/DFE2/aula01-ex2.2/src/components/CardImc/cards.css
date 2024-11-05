@@ -1,0 +1,22 @@
+.imcCard {
+  display: inline-block;
+  font-family: verdana, sans-serif;
+  border: solid 2px #ddd;
+  box-shadow: 0 5px 5px #ddd;
+  border-radius: 30px;
+  width: 200px;
+  margin: 10px;
+  padding: 10px;
+}
+
+.imcRed {
+  background-color: rgb(249, 18, 18);
+}
+
+.imcYellow {
+  background-color: rgb(255, 255, 0);
+}
+
+.imcGreen {
+  background-color: rgb(0, 255, 0);
+}
