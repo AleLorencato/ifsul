@@ -3,9 +3,6 @@ export default function TodoList() {
   const [todos, setTodos] = useState([])
   const [input, setInput] = useState('')
 
-  const handleAddTask = () => {}
-  const handleDeleteTask = () => {}
-
   const handleAddTodo = () => {
     if (input.trim()) {
       setTodos([...todos, { text: input, completed: false }])
@@ -30,41 +27,32 @@ export default function TodoList() {
   }
 
   return (
-    <div>
-      <input
-        type="text"
-        value={input}
-        onChange={e => setInput(e.target.value)}
-        placeholder="Adicione uma tarefa"
-      />
-      <button onClick={handleAddTask}>Adicionar</button>
-      <ul>
-        <li>
-          <input
-            type="text"
-            value={input}
-            onChange={e => setInput(e.target.value)}
-            placeholder="Adicione um passo"
-          />
-          <button onClick={handleAddTodo}>Adicionar</button>
-          {todos.map((todo, index) => (
-            <li
-              key={index}
-              style={{
-                textDecoration: todo.completed ? 'line-through' : 'none'
-              }}
-            >
-              <input
-                type="checkbox"
-                checked={todo.completed}
-                onChange={() => handleToggleComplete(index)}
-              />
-              <span>{todo.text}</span>
-              <button onClick={() => handleDeleteTodo(index)}>Delete</button>
-            </li>
-          ))}
-        </li>
-      </ul>
-    </div>
+    <ul>
+      <li>
+        <input
+          type="text"
+          value={input}
+          onChange={e => setInput(e.target.value)}
+          placeholder="Adicione um passo"
+        />
+        <button onClick={handleAddTodo}>Adicionar</button>
+        {todos.map((todo, index) => (
+          <li
+            key={index}
+            style={{
+              textDecoration: todo.completed ? 'line-through' : 'none'
+            }}
+          >
+            <input
+              type="checkbox"
+              checked={todo.completed}
+              onChange={() => handleToggleComplete(index)}
+            />
+            <span>{todo.text}</span>
+            <button onClick={() => handleDeleteTodo(index)}>Delete</button>
+          </li>
+        ))}
+      </li>
+    </ul>
   )
 }

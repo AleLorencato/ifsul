@@ -1,15 +1,15 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import TodoList from './components/TodoList'
+import Task from './components/Task'
 import './App.css'
 
 function App() {
   return (
     <>
       <div className="todo-app">
-        <h1>Todo List</h1>
-        <TodoList />
+        <h1>Tarefas</h1>
+        <Task />
       </div>
     </>
   )
