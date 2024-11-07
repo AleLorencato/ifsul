@@ -52,7 +52,18 @@ class CarroController extends Controller
         $this->carro->create($request->all());
         return redirect('carros');
     }
-
-
+    public function update(Request $request, $id)
+    {
+        $result = $this->carro->find($id);
+        $result->fill($request->all());
+        $result->save();
+        return redirect('carros');
+    }
+    public function destroy($id)
+    {
+        if (Carro::find($id)->delete()) {
+            return redirect('carros');
+        }
+    }
 
 }
