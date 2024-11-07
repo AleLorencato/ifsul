@@ -35,7 +35,6 @@ export default function App() {
     if (stepText.trim() === '') return
     const newTasks = tasks.map(task => {
       if (task.id === taskId) {
-        // Correção aqui
         return {
           ...task,
           steps: [
