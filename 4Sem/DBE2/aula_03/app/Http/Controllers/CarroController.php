@@ -52,6 +52,15 @@ class CarroController extends Controller
         $this->carro->create($request->all());
         return redirect('carros');
     }
+
+    public function edit($id)
+    {
+        $data = [
+            'carro' => $this->carro->find($id),
+        ];
+        return view('editarcarros', $data);
+    }
+
     public function update(Request $request, $id)
     {
         $result = $this->carro->find($id);
@@ -63,7 +72,8 @@ class CarroController extends Controller
     {
         if (Carro::find($id)->delete()) {
             return redirect('carros');
-        }
+        } else
+            dd($id);
     }
 
 }

@@ -47,6 +47,12 @@
                 <td>{{ $carro->modelo }}</td>
                 <td>{{ $carro->ano }}</td>
                 <td>{{ $carro->preco }}</td>
+                <td>
+                    <a href="{{route('edit', $carro->id)}}" title="Editar">Editar</a>
+                </td>
+                <td>
+                    <a href="{{route('destroy', $carro->id)}}" title="Deletar">Deletar</a>
+                </td>
         </tr>@endforeach
     </table>
     <h1>Listagem das Motos</h1>
