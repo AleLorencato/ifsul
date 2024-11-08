@@ -30,10 +30,8 @@
 </head>
 
 <body>
-    @foreach ($users as $user)
-        <h1>Bom dia
-            {{$user->name}}
-    </h1>@endforeach <h1>Listagem dos Carros</h1>
+    <h1>Listagem dos Carros</h1>
+    <a href="{{ url('/carros/form') }}">Adicionar Novo Carro</a>
     <table>
         <tr>
             <th>Marca</th>
@@ -48,26 +46,12 @@
                 <td>{{ $carro->ano }}</td>
                 <td>{{ $carro->preco }}</td>
                 <td>
-                    <a href="{{route('edit', $carro->id)}}" title="Editar">Editar</a>
+                    <a href="{{route('carro.edit', $carro->id)}}" title="Editar">Editar</a>
                 </td>
                 <td>
-                    <a href="{{route('destroy', $carro->id)}}" title="Deletar">Deletar</a>
+                    <a href="{{route('carro.destroy', $carro->id)}}" title="Deletar">Deletar</a>
                 </td>
         </tr>@endforeach
-    </table>
-    <h1>Listagem das Motos</h1>
-    <table>
-        <tr>
-            <th>Marca</th>
-            <th>Modelo</th>
-            <th>Ano</th>
-            <th>Preço</th>
-            @foreach ($motos as $moto)
-                <tr>
-                    <td>{{ $moto->marca }}</td>
-                    <td>{{ $moto->modelo }}</td>
-                    <td>{{ $moto->ano }}</td>
-            <td>{{ $moto->preco }}</td>@endforeach
     </table>
 </body>
 

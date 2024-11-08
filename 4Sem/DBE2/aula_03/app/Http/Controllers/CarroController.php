@@ -4,23 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\carro;
-use App\Models\moto;
-use App\Models\User;
 
 class CarroController extends Controller
 {
 
     protected $carro;
 
-    protected $moto;
 
-    protected $user;
-
-    public function __construct(Carro $carro, User $user, Moto $moto)
+    public function __construct(Carro $carro)
     {
         $this->carro = $carro;
-        $this->user = $user;
-        $this->moto = $moto;
     }
 
     public function index()
@@ -29,8 +22,6 @@ class CarroController extends Controller
             'listarcarros',
             [
                 'carros' => $this->carro->all(),
-                'motos' => $this->moto->all(),
-                'users' => $this->user->all()
             ]
         );
     }
@@ -41,8 +32,6 @@ class CarroController extends Controller
             'listarcarros',
             [
                 'carros' => $this->carro->find($id),
-                'motos' => $this->moto->find($id),
-                'users' => $this->user->find($id)
             ]
         );
     }
@@ -75,5 +64,4 @@ class CarroController extends Controller
         } else
             dd($id);
     }
-
 }

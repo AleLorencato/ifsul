@@ -11,7 +11,7 @@
 
     <h1>Edite o Carro</h1>
 
-    <form action="{{route('update', $carro->id)}}" method="POST">
+    <form action="{{route('carro.update', $carro->id)}}" method="POST">
         @csrf
         <label for="modelo">Modelo</label>
         <input type="text" name="modelo" id="modelo" value="{{$carro->modelo}}" />
