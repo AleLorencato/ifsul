@@ -3,21 +3,22 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\ProdutoCollection;
-use App\Http\Resources\ProdutoResource;
-use App\Models\Produto;
+use App\Http\Resources\MotoCollection;
+use App\Http\Resources\MotoResource;
+use App\Models\Moto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 
-class ProdutoController extends Controller
+class MotoController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return new ProdutoCollection(Produto::all());
+        return new MotoCollection(Moto::all());
     }
-//
+
     /**
      * Store a newly created resource in storage.
      */
@@ -29,15 +30,15 @@ class ProdutoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Produto $produto)
+    public function show(Moto $moto)
     {
-        return new ProdutoResource($produto);
+        return new MotoResource($moto);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Produto $produto)
+    public function update(Request $request, Moto $moto)
     {
         //
     }
@@ -45,7 +46,7 @@ class ProdutoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Produto $produto)
+    public function destroy(Moto $moto)
     {
         //
     }
