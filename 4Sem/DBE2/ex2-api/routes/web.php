@@ -48,4 +48,4 @@ Route::get('/motos/{id}/destroy', [MotoController::class, 'destroy'])->name('mot
 
 // API Carros Routes
 
-Route::apiResource('api/carros', ApiCarroController::class);
+// Route::apiResource('api/carros', ApiCarroController::class);
