@@ -6,8 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\CarroCollection;
 use App\Http\Resources\CarroResource;
 use App\Models\Carro;
+use Illuminate\Contracts\Cache\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
+use App\Http\Requests\StoreCarroRequest;
+use App\Http\Requests\UpdateCarroRequest;
+use Exception;
 
 class CarroController extends Controller
 {
@@ -22,9 +26,14 @@ class CarroController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreCarroRequest $request)
     {
-        //
+        if ($request->validated()) {
+            $carro = Carro::create($request->all());
+            return new CarroResource($carro);
+        } else {
+            return response()->json(['error' => 'Erro na Validacao'], 422);
+        }
     }
 
     /**
@@ -38,9 +47,13 @@ class CarroController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Carro $carro)
+    public function update(UpdateCarroRequest $request, Carro $carro)
     {
-        //
+        if ($carro->update($request->all())) {
+            return new CarroResource($carro);
+        } else {
+            return response()->json(['error' => 'Erro na Validacao'], 422);
+        }
     }
 
     /**
@@ -48,6 +61,11 @@ class CarroController extends Controller
      */
     public function destroy(Carro $carro)
     {
-        //
+        try {
+            $carro->delete();
+            return response()->json(['success' => 'Carro deletado com sucesso'], 200);
+        } catch (Exception $e) {
+            return response()->json(['error' => 'Erro ao deletar o carro'], 422);
+        }
     }
 }

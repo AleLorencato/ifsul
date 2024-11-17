@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreMotoRequest;
+use App\Http\Requests\UpdateMotoRequest;
 use App\Http\Resources\MotoCollection;
 use App\Http\Resources\MotoResource;
 use App\Models\Moto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
+use Exception;
 
 class MotoController extends Controller
 {
@@ -22,9 +25,14 @@ class MotoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreMotoRequest $request)
     {
-        //
+        if ($request->validated()) {
+            $moto = Moto::create($request->all());
+            return new MotoResource($moto);
+        } else {
+            return response()->json(['error' => 'Erro na Validacao'], 422);
+        }
     }
 
     /**
@@ -38,9 +46,13 @@ class MotoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Moto $moto)
+    public function update(UpdateMotoRequest $request, Moto $moto)
     {
-        //
+        if ($moto->update($request->all())) {
+            return new MotoResource($moto);
+        } else {
+            return response()->json(['error' => 'Erro na Validacao'], 422);
+        }
     }
 
     /**
@@ -48,6 +60,11 @@ class MotoController extends Controller
      */
     public function destroy(Moto $moto)
     {
-        //
+        try {
+            $moto->delete();
+            return response()->json(['success' => 'Moto deletada com sucesso'], 200);
+        } catch (Exception $e) {
+            return response()->json(['error' => 'Erro ao deletar moto'], 500);
+        }
     }
 }

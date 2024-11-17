@@ -45,7 +45,3 @@ Route::post('/motos', [MotoController::class, 'create']);
 Route::get('/motos/{id}/edit', [MotoController::class, 'edit'])->name('moto.edit');
 Route::post('/motos/{id}/update', [MotoController::class, 'update'])->name('moto.update');
 Route::get('/motos/{id}/destroy', [MotoController::class, 'destroy'])->name('moto.destroy');
-
-// API Carros Routes
-
-Route::apiResource('api/carros', ApiCarroController::class);
