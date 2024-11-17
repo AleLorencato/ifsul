@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Api\Controller;
 use App\Http\Resources\CarroCollection;
 use App\Http\Resources\CarroResource;
+use App\Http\Resources\CarroStoredResource;
 use App\Models\Carro;
 use Illuminate\Contracts\Cache\Store;
+use Dotenv\Exception\ValidationException;
 use Illuminate\Http\Request;
+use App\Http\Requests\CarroStoreRequest;
+use App\Http\Requests\CarroUpdateRequest;
+use App\Http\Resources\CarroUpdateResource;
 use Illuminate\Support\Facades\View;
 use App\Http\Requests\StoreCarroRequest;
 use App\Http\Requests\UpdateCarroRequest;
@@ -26,13 +31,12 @@ class CarroController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCarroRequest $request)
+    public function store(CarroStoreRequest $request)
     {
-        if ($request->validated()) {
-            $carro = Carro::create($request->all());
-            return new CarroResource($carro);
-        } else {
-            return response()->json(['error' => 'Erro na Validacao'], 422);
+        try {
+            return new CarroStoredResource(Carro::create($request->validated()));
+        } catch (Exception $e) {
+            return $this->errorHandler('Erro ao criar carro', $e, 500);
         }
     }
 
@@ -47,12 +51,13 @@ class CarroController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCarroRequest $request, Carro $carro)
+    public function update(CarroUpdateRequest $request, Carro $carro)
     {
-        if ($carro->update($request->all())) {
-            return new CarroResource($carro);
-        } else {
-            return response()->json(['error' => 'Erro na Validacao'], 422);
+        try {
+            $carro->update($request->all());
+            return new CarroUpdateResource($carro);
+        } catch (Exception $e) {
+            return $this->errorHandler('Erro ao atualizar carro', $e, 500);
         }
     }
 
@@ -63,9 +68,9 @@ class CarroController extends Controller
     {
         try {
             $carro->delete();
-            return response()->json(['success' => 'Carro deletado com sucesso'], 200);
+            return (new CarroResource($carro))->additional(['message' => 'Carro deletado com sucesso']);
         } catch (Exception $e) {
-            return response()->json(['error' => 'Erro ao deletar o carro'], 422);
+            return $this->errorHandler('Erro ao deletar carro', $e, 500);
         }
     }
 }

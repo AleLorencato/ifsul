@@ -1,11 +1,11 @@
 // App.jsx
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Task from './components/Task'
 
 export default function App() {
   const [tasks, setTasks] = useState([])
-  const [title, setTitle] = useState('')
-  const [description, setDescription] = useState('')
+  const title = useRef()
+  const description = useRef()
 
   useEffect(() => {
     const storedTasks = localStorage.getItem('tasks')
@@ -19,11 +19,16 @@ export default function App() {
   }, [tasks])
 
   const handleAddTask = () => {
-    if (title.trim() === '' || description.trim() === '') return
-    const newTask = { id: Date.now(), title, description, steps: [] }
+    const newTask = {
+      id: Date.now(),
+      title: title.current.value,
+      description: description.current.value,
+      completed: false,
+      steps: []
+    }
     setTasks([...tasks, newTask])
-    setTitle('')
-    setDescription('')
+    title.current.value = ''
+    description.current.value = ''
   }
 
   const handleRemoveTask = id => {
@@ -81,14 +86,12 @@ export default function App() {
       <div className="mb-6">
         <input
           type="text"
-          value={title}
-          onChange={e => setTitle(e.target.value)}
+          ref={title}
           placeholder="Título da tarefa"
           className="p-2 border border-gray-300 rounded w-full mb-2"
         />
         <textarea
-          value={description}
-          onChange={e => setDescription(e.target.value)}
+          ref={description}
           placeholder="Descrição da tarefa"
           className="p-2 border border-gray-300 rounded w-full mb-2"
         />
