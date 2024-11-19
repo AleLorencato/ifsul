@@ -4,8 +4,8 @@ import Task from './components/Task'
 
 export default function App() {
   const [tasks, setTasks] = useState([])
-  const title = useRef()
-  const description = useRef()
+  const titleRef = useRef()
+  const descriptionRef = useRef()
 
   useEffect(() => {
     const storedTasks = localStorage.getItem('tasks')
@@ -21,14 +21,14 @@ export default function App() {
   const handleAddTask = () => {
     const newTask = {
       id: Date.now(),
-      title: title.current.value,
-      description: description.current.value,
+      title: titleRef.current.value,
+      description: descriptionRef.current.value,
       completed: false,
       steps: []
     }
     setTasks([...tasks, newTask])
-    title.current.value = ''
-    description.current.value = ''
+    titleRef.current.value = ''
+    descriptionRef.current.value = ''
   }
 
   const handleRemoveTask = id => {
@@ -56,11 +56,13 @@ export default function App() {
   const handleToggleStep = (taskId, stepId) => {
     const newTasks = tasks.map(task => {
       if (task.id === taskId) {
-        const updatedSteps = task.steps.map(step =>
-          step.id === stepId ? { ...step, completed: !step.completed } : step
-        )
-        const allStepsCompleted = updatedSteps.every(step => step.completed)
-        return { ...task, steps: updatedSteps, completed: allStepsCompleted }
+        const updatedSteps = task.steps.map(step => {
+          if (step.id === stepId) {
+            return { ...step, completed: !step.completed }
+          }
+          return step
+        })
+        return { ...task, steps: updatedSteps }
       }
       return task
     })
@@ -71,9 +73,7 @@ export default function App() {
     const newTasks = tasks.map(task => {
       if (task.id === taskId) {
         const updatedSteps = task.steps.filter(step => step.id !== stepId)
-        const allStepsCompleted =
-          updatedSteps.length > 0 && updatedSteps.every(step => step.completed)
-        return { ...task, steps: updatedSteps, completed: allStepsCompleted }
+        return { ...task, steps: updatedSteps }
       }
       return task
     })
@@ -81,27 +81,11 @@ export default function App() {
   }
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-4">Todo List</h1>
-      <div className="mb-6">
-        <input
-          type="text"
-          ref={title}
-          placeholder="Título da tarefa"
-          className="p-2 border border-gray-300 rounded w-full mb-2"
-        />
-        <textarea
-          ref={description}
-          placeholder="Descrição da tarefa"
-          className="p-2 border border-gray-300 rounded w-full mb-2"
-        />
-        <button
-          onClick={handleAddTask}
-          className="bg-blue-500 text-white px-4 py-2 rounded"
-        >
-          Adicionar Tarefa
-        </button>
-      </div>
+    <div>
+      <h1>Todo List</h1>
+      <input ref={titleRef} type="text" placeholder="Título" />
+      <input ref={descriptionRef} type="text" placeholder="Descrição" />
+      <button onClick={handleAddTask}>Adicionar Tarefa</button>
       <ul>
         {tasks.map(task => (
           <Task

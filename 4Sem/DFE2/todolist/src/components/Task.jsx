@@ -1,4 +1,5 @@
-import { useState } from 'react'
+// Task.jsx
+import { useRef } from 'react'
 
 export default function Task({
   task,
@@ -7,11 +8,11 @@ export default function Task({
   onToggleStep,
   onDeleteStep
 }) {
-  const [stepInput, setStepInput] = useState('')
+  const stepRef = useRef()
 
   const handleAddStep = () => {
-    onAddStep(stepInput)
-    setStepInput('')
+    onAddStep(stepRef.current.value)
+    stepRef.current.value = ''
   }
 
   return (
@@ -32,9 +33,8 @@ export default function Task({
       <div className="mt-4">
         <div className="flex mb-2">
           <input
+            ref={stepRef}
             type="text"
-            value={stepInput}
-            onChange={e => setStepInput(e.target.value)}
             placeholder="Adicionar etapa"
             className="p-2 border border-gray-300 rounded flex-1 mr-2"
           />
