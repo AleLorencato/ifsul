@@ -1,6 +1,11 @@
-// App.jsx
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, createContext } from 'react'
 import Task from './components/Task'
+
+export const StepContext = createContext({
+  handleAddStep: () => {},
+  handleToggleStep: () => {},
+  handleDeleteStep: () => {}
+})
 
 export default function App() {
   const [tasks, setTasks] = useState([])
@@ -19,6 +24,11 @@ export default function App() {
   }, [tasks])
 
   const handleAddTask = () => {
+    if (
+      titleRef.current.value.trim() === '' ||
+      descriptionRef.current.value === ''
+    )
+      return
     const newTask = {
       id: Date.now(),
       title: titleRef.current.value,
@@ -81,21 +91,32 @@ export default function App() {
   }
 
   return (
-    <div>
+    <div className="flex flex-col p-4 m-4">
       <h1>Todo List</h1>
-      <input ref={titleRef} type="text" placeholder="Título" />
-      <input ref={descriptionRef} type="text" placeholder="Descrição" />
+      <input
+        ref={titleRef}
+        type="text"
+        placeholder="Título"
+        className="m-3 border-blue-500 rounded-xl p-2"
+      />
+      <input
+        ref={descriptionRef}
+        type="text"
+        placeholder="Descrição"
+        className="m-3 border-blue-500 rounded-xl p-2"
+      />
       <button onClick={handleAddTask}>Adicionar Tarefa</button>
       <ul>
         {tasks.map(task => (
-          <Task
-            key={task.id}
-            task={task}
-            onRemove={() => handleRemoveTask(task.id)}
-            onAddStep={stepText => handleAddStep(task.id, stepText)}
-            onToggleStep={stepId => handleToggleStep(task.id, stepId)}
-            onDeleteStep={stepId => handleDeleteStep(task.id, stepId)}
-          />
+          <StepContext.Provider
+            value={{ handleAddStep, handleToggleStep, handleDeleteStep }}
+          >
+            <Task
+              key={task.id}
+              task={task}
+              onRemove={() => handleRemoveTask(task.id)}
+            />
+          </StepContext.Provider>
         ))}
       </ul>
     </div>
