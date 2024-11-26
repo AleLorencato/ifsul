@@ -8,8 +8,6 @@ use App\Http\Requests\UpdateMotoRequest;
 use App\Http\Resources\MotoCollection;
 use App\Http\Resources\MotoResource;
 use App\Models\Moto;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\View;
 use Exception;
 
 class MotoController extends Controller

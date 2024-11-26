@@ -8,8 +8,6 @@ use App\Http\Requests\UpdateUserRequest;
 use App\Http\Resources\UserResource;
 use App\Http\Resources\UserCollection;
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\View;
 use Exception;
 
 class UserController extends Controller

@@ -1,12 +1,8 @@
 <?php
-use App\Models\carro;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CarroController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\MotoController;
-
-use App\Http\Controllers\Api\CarroController as ApiCarroController;
-
 
 
 Route::get('/', function () {

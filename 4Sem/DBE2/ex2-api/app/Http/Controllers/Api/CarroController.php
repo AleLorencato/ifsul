@@ -7,15 +7,9 @@ use App\Http\Resources\CarroCollection;
 use App\Http\Resources\CarroResource;
 use App\Http\Resources\CarroStoredResource;
 use App\Models\Carro;
-use Illuminate\Contracts\Cache\Store;
-use Dotenv\Exception\ValidationException;
-use Illuminate\Http\Request;
 use App\Http\Requests\CarroStoreRequest;
 use App\Http\Requests\CarroUpdateRequest;
 use App\Http\Resources\CarroUpdateResource;
-use Illuminate\Support\Facades\View;
-use App\Http\Requests\StoreCarroRequest;
-use App\Http\Requests\UpdateCarroRequest;
 use Exception;
 
 class CarroController extends Controller
