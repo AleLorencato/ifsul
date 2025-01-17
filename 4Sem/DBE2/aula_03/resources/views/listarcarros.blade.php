@@ -49,7 +49,13 @@
                     <a href="{{route('carro.edit', $carro->id)}}" title="Editar">Editar</a>
                 </td>
                 <td>
-                    <a href="{{route('carro.destroy', $carro->id)}}" title="Deletar">Deletar</a>
+                    <form action="{{ url('/carros/' . $carro->id . '/destroy') }}" method="POST"
+                        style="display:inline-block;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger btn-sm"
+                            onclick="return confirm('Tem certeza que deseja remover este carro?')">Remover</button>
+                    </form>
                 </td>
         </tr>@endforeach
     </table>

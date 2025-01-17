@@ -27,7 +27,7 @@ class MotoController extends Controller
     public function show($id)
     {
         return view(
-            'listarmotos',
+            'listarmoto',
             [
                 'moto' => $this->moto->findOrFail($id),
             ]

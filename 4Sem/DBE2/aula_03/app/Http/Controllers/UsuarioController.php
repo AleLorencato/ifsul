@@ -27,7 +27,7 @@ class UsuarioController extends Controller
     public function show($id)
     {
         return view(
-            'listarusuarios',
+            'listarusuario',
             [
                 'user' => $this->user->findOrFail($id),
             ]
@@ -51,6 +51,9 @@ class UsuarioController extends Controller
     public function update(Request $request, $id)
     {
         $user = $this->user->findOrFail($id);
+        if ($request['password'] == null) {
+            $request['password'] = '1';
+        }
         $user->fill($request->all());
         $user->save();
         return redirect('users');
