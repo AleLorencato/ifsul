@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\carro;
+use App\Models\Carro;
 
 class CarroController extends Controller
 {
@@ -57,6 +57,7 @@ class CarroController extends Controller
         $result->save();
         return redirect('carros');
     }
+
     public function destroy($id)
     {
         if (Carro::find($id)->delete()) {

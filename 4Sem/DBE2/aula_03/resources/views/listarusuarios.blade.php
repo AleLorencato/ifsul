@@ -37,9 +37,10 @@
                         <td>
                             <a href="{{ url('/users/' . $user->id) }}" class="btn btn-info btn-sm">Ver</a>
                             <a href="{{ url('/users/' . $user->id . '/edit') }}" class="btn btn-warning btn-sm">Editar</a>
-                            <form action="{{ url('/users/' . $user->id . '/destroy') }}" method="GET"
+                            <form action="{{ url('/users/' . $user->id . '/destroy') }}" method="POST"
                                 style="display:inline-block;">
                                 @csrf
+                                @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm"
                                     onclick="return confirm('Tem certeza que deseja remover este usuário?')">Remover</button>
                             </form>
