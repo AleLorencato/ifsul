@@ -29,7 +29,7 @@ class UsuarioController extends Controller
         return view(
             'listarusuarios',
             [
-                'user' => $this->user->findOrFail($id),
+                'users' => $this->user->findOrFail($id),
             ]
         );
     }
