@@ -1,0 +1,12 @@
+.custom-button {
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.custom-button:hover {
+  filter: brightness(0.9); /* Escurece ligeiramente no hover */
+}
+
+.custom-button:active {
+  transform: scale(0.95); /* Reduz ligeiramente o tamanho ao pressionar */
+}
