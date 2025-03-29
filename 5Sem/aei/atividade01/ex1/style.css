@@ -9,8 +9,8 @@ div {
 button {
   width: 100px;
   height: 40px;
-  background-color: #1e1e1e;
-  color: white;
+  background-color: #808080;
+  color: black;
   border: 0px;
   border-bottom: 0px;
   padding-bottom: 10px;
@@ -24,17 +24,17 @@ button:active {
 
 button:hover {
   box-shadow: 0px 0px 4px gray;
-  background-color: #808080;
-  color: black;
-  border-left: 20px solid #808080;
-  border-right: 20px solid #808080;
-  transition: border-left 1s ease-out, border-right 1s ease-out, background-color 1s ease;
+  background-color: #1e1e1e;
+  color: white;
+  border-left: 20px solid #1e1e1e;
+  border-right: 20px solid #1e1e1e;
+  transition: border-left 1s ease-out, border-right 1s ease-out,
+    background-color 1.25s ease;
 }
 
 input {
   width: 200px;
   height: 40px;
-  /* padding: 5px; */
   transition: padding-top 0.5s ease;
   border: none;
   border-bottom: 1px solid #9797979b;
@@ -47,7 +47,6 @@ input:focus {
   border-bottom: 2px solid #979797;
   padding-top: 1px;
   transition: padding 0.5s ease;
-  /* height: 20px; */
 }
 
 label {
