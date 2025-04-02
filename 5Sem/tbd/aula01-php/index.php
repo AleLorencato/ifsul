@@ -1,24 +1,51 @@
 <?php
 
-$curl = curl_init("https://tsi-tbd-ale-default-rtdb.firebaseio.com/.json");
-curl_setopt_array($curl, array(
-  CURLOPT_RETURNTRANSFER => true,
-  CURLOPT_ENCODING => '',
-  CURLOPT_MAXREDIRS => 10,
-  CURLOPT_TIMEOUT => 30,
-  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-  CURLOPT_POST => true,
-  CURLOPT_POSTFIELDS => '',
+require __DIR__ . '/vendor/autoload.php';
+use Dotenv\Dotenv;
+use Kreait\Firebase\Factory;
+$dotenv = Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 
-  CURLOPT_CUSTOMREQUEST => 'GET',
-  CURLOPT_HTTPHEADER => array(
-    'cache-control: no-cache',
-    'Content-Type: application/json',
-    'Content-Length: ' . strlen(json_encode($data))
-  ),
-));
-$response = curl_exec($curl);
 
-curl_close($curl);
+$factory = (new Factory)
+  ->withServiceAccount($_ENV['CREDENTIALS_PATH'])
+  ->withDatabaseUri($_ENV['FIREBASE_URL']);
 
-echo $response;
+$database = $factory->withDatabaseAuthVariableOverride(null)->createDatabase();
+$reference = $database->getReference('users');
+
+
+
+
+// $data = array(
+//   'email' => 'Aline@gmail.com',
+//   'username' => 'Aline',
+// );
+
+// $curl = curl_init($_ENV['FIREBASE_URL']);
+// curl_setopt_array($curl, array(
+//   CURLOPT_RETURNTRANSFER => true,
+//   CURLOPT_ENCODING => '',
+//   CURLOPT_MAXREDIRS => 10,
+//   CURLOPT_TIMEOUT => 30,
+//   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+//   CURLOPT_POST => true,
+//   CURLOPT_POSTFIELDS => json_encode($data),
+//   CURLOPT_HTTPHEADER => array(
+//     'cache-control: no-cache',
+//     'Content-Type: application/json',
+//     'Content-Length: ' . strlen(json_encode($data))
+//   ),
+//   CURLOPT_SSL_VERIFYPEER => false
+// ));
+
+// $response = curl_exec($curl);
+
+// $err = curl_error($curl);
+// if ($err) {
+//   echo 'cURL Error #:' . $err;
+// } else {
+//   echo 'Response: ' . $response;
+// }
+
+// curl_close($curl);
