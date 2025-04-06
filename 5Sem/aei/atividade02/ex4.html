@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Loading Bar</title>
+    <title>barra de progresso</title>
   </head>
   <body>
     <div class="loading-bar">
@@ -24,11 +24,15 @@
         width: 0%;
         height: 100%;
         background-color: red;
-        transition: width 0.3s ease;
-        animation-play-state: paused;
+        animation: loading 3s linear paused;
+        animation-fill-mode: forwards;
       }
 
       .loading-bar:hover .progress {
+        animation: loading 3s linear forwards;
+      }
+
+      .loading-bar:active .progress {
         animation: loading 3s linear forwards;
       }
 

@@ -1,0 +1,2 @@
+link do commit no github do exercicio 6 (Skeleton):
+https://github.com/LorencatoMotors/Front/commit/1a3c59793519247c9f4ec062c990cb679e6fee24
