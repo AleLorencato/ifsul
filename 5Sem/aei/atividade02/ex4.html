@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loading Bar</title>
+  </head>
+  <body>
+    <div class="loading-bar">
+      <div class="progress"></div>
+    </div>
+
+    <style>
+      .loading-bar {
+        width: 400px;
+        height: 20px;
+        background-color: lightgray;
+        position: relative;
+        overflow: hidden;
+        border: 2px solid black;
+      }
+
+      .progress {
+        width: 0%;
+        height: 100%;
+        background-color: red;
+        transition: width 0.3s ease;
+        animation-play-state: paused;
+      }
+
+      .loading-bar:hover .progress {
+        animation: loading 3s linear forwards;
+      }
+
+      @keyframes loading {
+        0% {
+          width: 0%;
+        }
+        100% {
+          width: 100%;
+        }
+      }
+    </style>
+  </body>
+</html>
