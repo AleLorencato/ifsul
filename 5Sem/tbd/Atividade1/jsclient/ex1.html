@@ -7,36 +7,38 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
   <body>
+    <h1>Ex1 - Implementando a árvore de Clientes</h1>
     <script>
-      res = $.ajax({
-        type: 'POST',
-        url: 'https://tsi-tbd-ale-default-rtdb.firebaseio.com/clientes.json',
-        data: JSON.stringify([
-          {
-            nome: 'Maria',
-            idade: 15
-          },
-          {
-            nome: 'João',
-            idade: 25
-          },
-          {
-            nome: 'Ana',
-            idade: 23
-          }
-        ]),
-
-        contentType: 'application/json',
-        dataType: 'json',
-        success: function (data) {
-          console.log('Success:', data)
+      const clientes = [
+        {
+          nome: 'Maria',
+          idade: 15
         },
-        error: function (error) {
-          console.log('Error:', error)
+        {
+          nome: 'João',
+          idade: 25
+        },
+        {
+          nome: 'Ana',
+          idade: 23
         }
-      })
+      ]
 
-      console.log(res)
+      clientes.forEach((cliente, index) => {
+        $.ajax({
+          type: 'PUT',
+          url: `https://tsi-tbd-ale-default-rtdb.firebaseio.com/clientes/${index}.json`,
+          data: JSON.stringify(cliente),
+          contentType: 'application/json',
+          dataType: 'json',
+          success: function (data) {
+            console.log(`Cliente ${index} inserido com sucesso:`, data)
+          },
+          error: function (error) {
+            console.log('Erro ao inserir cliente:', error)
+          }
+        })
+      })
     </script>
   </body>
 </html>

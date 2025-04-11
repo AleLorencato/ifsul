@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <h1>
+      Ex 2 - Atualizar apenas o campo Nome da Maria adicionando um sobrenome.
+    </h1>
+    <script>
+      $.ajax({
+        type: 'PATCH',
+        url: 'https://tsi-tbd-ale-default-rtdb.firebaseio.com/clientes/0.json',
+        data: JSON.stringify({ nome: 'Maria Silva' }),
+        contentType: 'application/json',
+        dataType: 'json',
+        success: function (data) {
+          console.log('Nome da Maria atualizado com sucesso:', data)
+        },
+        error: function (error) {
+          console.log('Erro ao atualizar o nome da Maria:', error)
+        }
+      })
+    </script>
+  </body>
+</html>
