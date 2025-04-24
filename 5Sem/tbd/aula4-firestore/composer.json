@@ -1,0 +1,7 @@
+{
+    "require": {
+        "google/cloud-firestore": "^1.41",
+        "google/cloud-spanner": "^1.73",
+        "grpc/grpc": "1.38"
+    }
+}
