@@ -20,7 +20,6 @@ dbConnect()
       .finally(() => {
         console.log('Conexão encerrada')
         process.exit(0)
-      }
-    )
+      })
   })
   .catch(err => console.log(err))

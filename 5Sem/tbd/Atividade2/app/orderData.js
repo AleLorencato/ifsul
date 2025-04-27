@@ -1,8 +1,20 @@
-import  * as fb from "firebase/database";// sera preciso usar fb antes de cada funcao
-import { dbConnect } from "./connetToFB.js";
+import * as fb from 'firebase/database' // sera preciso usar fb antes de cada funcao
+import { dbConnect } from './connetToFB.js'
 
 dbConnect()
-.then(db=>{//db contem a referencia ao banco
-    console.log(db)//mostra informacoes da conexao(pode excluir)
-    //implemente aqui
-}).catch(err=>console.log(err))
+  .then(db => {
+    //db contem a referencia ao banco
+    console.log(db) //mostra informacoes da conexao(pode excluir)
+    const dbRef = fb.ref(db, 'produtos')
+    const result = fb.query(dbRef, fb.orderByKey())
+    fb.onValue(result, snapshot => {
+      if (snapshot.exists()) {
+        console.log(snapshot.val())
+        process.exit(0)
+      } else {
+        console.log('Não há dados disponíveis')
+        process.exit(0)
+      }
+    })
+  })
+  .catch(err => console.log(err))
