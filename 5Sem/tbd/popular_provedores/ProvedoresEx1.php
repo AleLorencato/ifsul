@@ -33,7 +33,7 @@ if ($selectedDate) {
         <select name="date" id="date" required>
             <option value="">-- Escolha uma data --</option>
             <?php
-            for ($i = 2007; $i <= 2013; $i++) {
+            for ($i = 2007; $i <= 2023; $i++) {
                 $date = "$i-09-01";
                 echo "<option value='$date'" . ($selectedDate == $date ? ' selected' : '') . ">$date</option>";
             }

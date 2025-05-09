@@ -1,77 +1,67 @@
 <http>
+
     <head>
         <?php
-include "key.php";
+        require "key.php";
 
-require 'vendor/autoload.php';
-use Google\Cloud\Firestore\FirestoreClient;
+        require 'vendor/autoload.php';
+        use Google\Cloud\Firestore\FirestoreClient;
 
-$db = new FirestoreClient($configParams);
-$collecRef = $db->collection('Provedores');
-$docs = $collecRef->orderBy('mensuracao', 'DESC')->limit(1)->offset(1)->documents();
-$datamaxima = $docs->rows()[0]['mensuracao'];
+        $db = new FirestoreClient($configParams);
+        $collecRef = $db->collection('Provedores');
+        $data_prov = $collecRef
+            ->select(['mensuracao', 'qt'])
+            ->orderBy('mensuracao')
+            ->limit(500)
+            ->documents();
 
-$data_prov = $collecRef->where('mensuracao', '=',$datamaxima)->orderBy('empresa')->documents();
-$name_prov = '';
-$qt_clientes = 0;
-?>
+        $data_chart = [];
+        foreach ($data_prov as $reg_prov) {
+            $mensuracao = $reg_prov['mensuracao'];
+            $qt_clientes = $reg_prov['qt'];
+            if (!isset($data_chart[$mensuracao])) {
+                $data_chart[$mensuracao] = 0;
+            }
+            $data_chart[$mensuracao] += $qt_clientes;
+        }
+        ?>
         <script>
             var arrProvedores = [];
-            arrProvedores.push(['Provedor', 'Clientes'],)
+            arrProvedores.push(['Ano', 'Assinantes']);
             <?php
-            foreach ($data_prov as $reg_prov){
-                if ($name_prov != $reg_prov['empresa']){
-                    if ($qt_clientes>0) {
-                        echo 'arrProvedores.push(["' . $name_prov . '",' . $qt_clientes . ']);' . PHP_EOL;
-                    }
-                    $name_prov = $reg_prov['empresa'];
-                    $qt_clientes = $reg_prov['qt'];
-                }else{ // ($name_prov == $reg_prov['empresa'])
-                    $qt_clientes += $reg_prov['qt'];
-                }
+            foreach ($data_chart as $mensuracao => $qt_clientes) {
+                echo 'arrProvedores.push(["' . $mensuracao . '", ' . $qt_clientes . ']);' . PHP_EOL;
             }
             ?>
         </script>
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
         <link href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css" rel="stylesheet">
         <script type="text/javascript" src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
     </head>
 
     <script type="text/javascript">
-        google.charts.load('current', {'packages':['corechart']});
+        google.charts.load('current', { 'packages': ['corechart'] });
         google.charts.setOnLoadCallback(drawChart);
 
         function drawChart() {
             var data = google.visualization.arrayToDataTable(arrProvedores);
             var options = {
-                title: 'Maiores provedores de Pelotas',
-                sliceVisibilityThreshold: 0.02
+                title: 'Número de Assinantes ao Longo dos Anos',
+                hAxis: { title: 'Ano', titleTextStyle: { color: '#333' } },
+                vAxis: { title: 'Número de Assinantes', minValue: 0 },
+                curveType: 'function',
+                legend: { position: 'bottom' }
             };
-            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+            var chart = new google.visualization.LineChart(document.getElementById('linechart'));
             chart.draw(data, options);
         }
     </script>
 
     <body>
-    <div style="width: 100%; overflow: hidden;">
-        <div style="width: 800px; float: left;">
-            <table id="datatable"></table>
-        </div>
-        <div style="margin-left: 800px;">
-            <div id="piechart" style="width: 800px; height: 800px;"></div>
-        </div>
-    </div>
+        <div id="linechart" style="width: 100%; height: 500px;"></div>
+    </body>
 
-    <script>
-        new DataTable("#datatable", {
-            data:arrProvedores.slice(1),
-            columns: [
-                { title: 'Provedor' },
-                { title: 'Clientes' }
-            ],
-            order: [[1, 'desc']]
-        });
-    </script>
     </body>
 </http>
