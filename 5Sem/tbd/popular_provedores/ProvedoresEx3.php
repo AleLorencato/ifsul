@@ -12,7 +12,7 @@
         $data_prov = $collecRef
             ->select(['mensuracao', 'qt'])
             ->orderBy('mensuracao')
-            ->limit(500)
+            ->limit(100)
             ->documents();
 
         $data_chart = [];
