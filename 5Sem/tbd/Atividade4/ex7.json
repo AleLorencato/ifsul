@@ -1,0 +1,13 @@
+{
+  db.empregosti.aggregate([
+    {$group: {_id: "$subsetor", total: {$sum: "$empregos"
+        }
+      }
+    },
+    {$sort: {total: -1
+      }
+    },
+    {$limit: 5
+    }
+  ])
+}

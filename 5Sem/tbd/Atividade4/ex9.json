@@ -1,0 +1,154 @@
+{db.getCollection('empregos.empregosti').aggregate([
+    { $match: { ano: 2021
+      }
+    },
+    {
+    $group: {
+      _id: "$regiao",
+      total_ti_empregos_cidade: { $sum: "$empregos"
+        }
+      }
+    },
+    {
+    $lookup: {
+      from: "empregos.municipios",
+      let: { cidade_empregos: "$_id"
+        },
+      pipeline: [
+          {
+          $match: {
+            $expr: {
+              $cond: {
+                if: { $isArray: "$cidade"
+                  },
+                then: { $in: [
+                      "$$cidade_empregos",
+                      "$cidade"
+                    ]
+                  },
+                else: { $eq: [
+                      "$$cidade_empregos",
+                      "$cidade"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          { $project: { microregiao: 1, _id: 0
+            }
+          }
+        ],
+      as: "microregiao_info"
+      }
+    },
+    { $unwind: "$microregiao_info"
+    },
+    {
+    $group: {
+      _id: "$microregiao_info.microregiao",
+      total_ti_empregos_microregiao: { $sum: "$total_ti_empregos_cidade"
+        }
+      }
+    },
+    {
+    $lookup: {
+      from: "empregos.municipios",
+      localField: "_id",
+      foreignField: "microregiao",
+      as: "dados_microregiao_cidades"
+      }
+    },
+    { $unwind: "$dados_microregiao_cidades"
+    },
+    {
+    $addFields: {
+      cidades_array_para_populacao: {
+        $cond: {
+          if: { $isArray: "$dados_microregiao_cidades.cidade"
+            },
+          then: "$dados_microregiao_cidades.cidade",
+          else: [
+              "$dados_microregiao_cidades.cidade"
+            ]
+          }
+        }
+      }
+    },
+    { $unwind: "$cidades_array_para_populacao"
+    },
+    {
+    $lookup: {
+      from: "populacao_municipios",
+      localField: "cidades_array_para_populacao",
+      foreignField: "MUNICIPIO",
+      as: "populacao_info_cidade"
+      }
+    },
+    { $unwind: { path: "$populacao_info_cidade", preserveNullAndEmptyArrays: true
+      }
+    },
+    {
+    $group: {
+      _id: "$_id",
+      total_ti_empregos_microregiao: { $first: "$total_ti_empregos_microregiao"
+        },
+      populacao_total_microregiao: { $sum: "$populacao_info_cidade.POPULACAO_2022"
+        }
+      }
+    },
+    {
+    $project: {
+      _id: 0,
+      microregiao: "$_id",
+      total_ti_empregos: "$total_ti_empregos_microregiao",
+      populacao_total_censo_2022: "$populacao_total_microregiao",
+      percentual_ti_sobre_populacao: {
+        $cond: [ // Evita divisão por zero
+            { $or: [
+                { $eq: [
+                    "$populacao_total_microregiao",
+                    0
+                  ]
+                },
+                { $eq: [
+                    "$populacao_total_microregiao",
+                    null
+                  ]
+                }
+              ]
+            },
+            0,
+            {
+            $multiply: [
+                { $divide: [
+                    "$total_ti_empregos_microregiao",
+                    "$populacao_total_microregiao"
+                  ]
+                },
+                100
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+    $project: {
+        microregiao: 1,
+        total_ti_empregos: 1,
+        populacao_total_censo_2022: 1,
+        percentual_ti_sobre_populacao: { $round: [
+            "$percentual_ti_sobre_populacao",
+            4
+          ]
+        }
+      }
+    },
+    { $sort: { percentual_ti_sobre_populacao: -1
+      }
+    }
+  ],
+  { allowDiskUse: true
+  });
+}

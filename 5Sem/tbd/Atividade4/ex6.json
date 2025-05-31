@@ -1,0 +1,24 @@
+{
+  db.getCollection('empregos.empregosti').aggregate(
+  [
+    { $match: { ano: 2021
+      }
+    },
+    {
+      $group: {
+        _id: '$regiao',
+        total: { $sum: '$empregos'
+        }
+      }
+    },
+    { $match: { total: { $gt: 100
+        }
+      }
+    },
+    { $count: 'string'
+    }
+  ],
+  { maxTimeMS: 60000, allowDiskUse: true
+  }
+);
+}

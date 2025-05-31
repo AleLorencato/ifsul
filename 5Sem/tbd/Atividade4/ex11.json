@@ -1,0 +1,102 @@
+{
+  db.empregos.empregosti.aggregate([
+    {
+    $match: {
+      ano: { $in: [
+            2018,
+            2021
+          ]
+        }
+      }
+    },
+    {
+    $group: {
+      _id: {
+        subsetor: "$subsetor",
+        ano: "$ano"
+        },
+      totalEmpregosEstadoAno: { $sum: "$empregos"
+        }
+      }
+    },
+    {
+    $group: {
+      _id: "$_id.subsetor",
+      empregos_2018: {
+        $sum: {
+          $cond: [
+              { $eq: [
+                  "$_id.ano",
+                  2018
+                ]
+              },
+              "$totalEmpregosEstadoAno",
+              0
+            ]
+          }
+        },
+      empregos_2021: {
+        $sum: {
+          $cond: [
+              { $eq: [
+                  "$_id.ano",
+                  2021
+                ]
+              },
+              "$totalEmpregosEstadoAno",
+              0
+            ]
+          }
+        }
+      }
+    },
+    {
+    $project: {
+      subsetor: "$_id",
+      _id: 0,
+      empregos_2018: 1,
+      empregos_2021: 1,
+      crescimentoPercentual: {
+        $cond: {
+          if: { $gt: [
+                "$empregos_2018",
+                0
+              ]
+            },
+          then: {
+            $multiply: [
+                {
+                $divide: [
+                    { $subtract: [
+                        "$empregos_2021",
+                        "$empregos_2018"
+                      ]
+                    },
+                    "$empregos_2018"
+                  ]
+                },
+                100
+              ]
+            },
+          else: {
+            $cond: {
+              if: { $gt: [
+                    "$empregos_2021",
+                    0
+                  ]
+                },
+              then: "Crescimento de 0 para >0 (Infinito %)",
+              else: 0
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+    $sort: {
+      subsetor: 1
+      }
+    }
+  ])
+}

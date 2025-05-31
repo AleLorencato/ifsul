@@ -1,0 +1,36 @@
+{
+  db.getCollection('empregos.empregosti').aggregate(
+  [
+    {
+      $match: {
+        regiao: 'Pelotas'
+      }
+    },
+    {
+      $group: {
+        _id: '$regiao', 
+        salarioTotalAcumulado: {
+          $sum: { $multiply: ['$empregos', '$salariomedio'
+            ]
+          }
+        },
+        totalEmpregos: {
+          $sum: '$empregos'
+        }
+      }
+    },
+    {
+      $project: {
+        _id: 0,
+        regiao: '$_id',
+        salarioMedioPonderado: {
+          $divide: ['$salarioTotalAcumulado', '$totalEmpregos'
+          ]
+        }
+      }
+    }
+  ],
+  { maxTimeMS: 60000, allowDiskUse: true
+  }
+);
+}

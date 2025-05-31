@@ -1,0 +1,41 @@
+{
+  db.empregos.empregosti.aggregate([
+    {
+    $group: {
+      _id: {
+        regiao: "$regiao",
+        subsetor: "$subsetor"
+        },
+      totalEmpregos: { $sum: "$empregos"
+        }
+      }
+    },
+    {
+    $sort: {
+        "_id.regiao": 1,
+        "totalEmpregos": -1
+      }
+    },
+    {
+    $group: {
+      _id: "$_id.regiao",
+      subsetorMaisEmprega: { $first: "$_id.subsetor"
+        },
+      quantidadeEmpregos: { $first: "$totalEmpregos"
+        }
+      }
+    },
+    {
+    $project: {
+      _id: 0,
+      microrregiao: "$_id",
+      subsetorMaisEmprega: 1,
+      quantidadeEmpregos: 1
+      }
+    },
+    {
+    $sort: { microrregiao: 1
+      }
+    }
+  ])
+}

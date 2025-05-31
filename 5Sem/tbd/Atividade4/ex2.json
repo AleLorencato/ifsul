@@ -1,0 +1,19 @@
+{
+  db.empregosti.aggregate([
+    { $match: {
+        "ano": 2021
+      }
+    },
+    {$project: {ano: 1, salarioTotal: { $multiply: [
+            "$salariomedio",
+            "$empregos"
+          ]
+        }
+      }
+    },
+    {$group: {_id: "$ano", total: { $sum: "$salarioTotal" 
+        }
+      }
+    }
+  ])
+}

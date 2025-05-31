@@ -1,0 +1,105 @@
+{
+  db.empregos.empregosti.aggregate([
+    {
+    $match: {
+      ano: { $in: [
+            2020,
+            2021
+          ]
+        }
+      }
+    },
+    {
+    $group: {
+      _id: {
+        regiao: "$regiao",
+        ano: "$ano"
+        },
+      totalEmpregosAno: { $sum: "$empregos"
+        }
+      }
+    },
+    {
+    $group: {
+      _id: "$_id.regiao",
+      empregos_2020: {
+        $sum: {
+          $cond: [
+              { $eq: [
+                  "$_id.ano",
+                  2020
+                ]
+              },
+              "$totalEmpregosAno",
+              0
+            ]
+          }
+        },
+      empregos_2021: {
+        $sum: {
+          $cond: [
+              { $eq: [
+                  "$_id.ano",
+                  2021
+                ]
+              },
+              "$totalEmpregosAno",
+              0
+            ]
+          }
+        }
+      }
+    },
+    {
+    $project: {
+      regiao: "$_id",
+      _id: 0,
+      empregos_2020: 1,
+      empregos_2021: 1,
+      crescimentoPercentual: {
+        $cond: {
+          if: { $gt: [
+                "$empregos_2020",
+                0
+              ]
+            },
+          then: {
+            $multiply: [
+                {
+                $divide: [
+                    { $subtract: [
+                        "$empregos_2021",
+                        "$empregos_2020"
+                      ]
+                    },
+                    "$empregos_2020"
+                  ]
+                },
+                100
+              ]
+            },
+          else: {
+            $cond: {
+              if: { $gt: [
+                    "$empregos_2021",
+                    0
+                  ]
+                },
+              then: "Crescimento de 0 para >0 (Infinito %)",
+              else: 0
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+    $sort: {
+      crescimentoPercentual: -1
+      }
+    },
+    {
+    $limit: 1
+    }
+  ])
+}
