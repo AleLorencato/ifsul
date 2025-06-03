@@ -132,55 +132,132 @@ try {
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <style>
     body {
-      background-color: #f5f5f5;
-      font-family: Arial, sans-serif;
-      margin: 20px;
-    }
-
-    .controls {
-      margin-bottom: 20px;
-      padding: 15px;
-      border-radius: 5px;
-    }
-
-    #velocidadesSelect {
-      width: 100%;
-      max-width: 200px;
-      height: 400px;
-      padding: 5px;
-      font-size: 14px;
-      background-color: #f5f5f5;
-      border-radius: 8px;
-    }
-
-    .control-info {
-      margin-top: 10px;
-      font-size: 12px;
-      color: #666;
-    }
-
-    #chart_div {
-      margin: 20px auto;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
       padding: 20px;
-      background-color: #fff;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      border-radius: 5px;
-      display: flex;
-      flex-direction: row;
+      min-height: 100vh;
     }
 
     h1 {
       text-align: center;
-      color: #333;
-      font-size: 24px;
-      margin-bottom: 20px;
+      color: #fff;
+      font-size: 28px;
+      margin-bottom: 30px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      font-weight: 300;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 15px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(10px);
+      display: flex;
+      flex-direction: row;
+      overflow: hidden;
+    }
+
+    .controls {
+      background: linear-gradient(145deg, #f0f2f7, #e8ebf0);
+      padding: 25px;
+      border-radius: 15px 0 0 15px;
+      min-width: 250px;
+      box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .controls label {
+      display: block;
+      margin-bottom: 15px;
+      font-weight: 600;
+      color: #4a5568;
+      font-size: 14px;
+    }
+
+    #velocidadesSelect {
+      width: 100%;
+      height: 400px;
+      padding: 10px;
+      font-size: 13px;
+      background: #fff;
+      border: 2px solid #e2e8f0;
+      border-radius: 10px;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+      transition: border-color 0.3s ease;
+    }
+
+    #velocidadesSelect:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    #velocidadesSelect option {
+      padding: 8px;
+      margin: 2px 0;
+      border-radius: 5px;
+    }
+
+    #velocidadesSelect option:selected {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+    }
+
+    .control-info {
+      margin-top: 15px;
+      font-size: 11px;
+      color: #718096;
+      line-height: 1.4;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 8px;
+      border-left: 4px solid #667eea;
+    }
+
+    .chart-container {
+      flex: 1;
+      padding: 25px;
+      background: #fff;
+      border-radius: 0 15px 15px 0;
+    }
+
+    #chart_div {
+      width: 100%;
+      height: 600px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      background: #fff;
+    }
+
+    .no-data-message {
+      text-align: center;
+      padding: 50px;
+      color: #718096;
+      font-size: 16px;
+      background: linear-gradient(135deg, #f7fafc, #edf2f7);
+      border-radius: 10px;
+      border: 2px dashed #cbd5e0;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .controls {
+        border-radius: 15px 15px 0 0;
+        min-width: auto;
+      }
+
+      .chart-container {
+        border-radius: 0 0 15px 15px;
+      }
+
+      #velocidadesSelect {
+        height: 200px;
+      }
     }
   </style>
 </head>
@@ -302,9 +379,7 @@ try {
       if (viewColumns.length <= 1) {
         chart.clearChart();
         document.getElementById('chart_div').innerHTML =
-          '<div style="text-align:center; padding:50px; color:#666; font-size:16px;">' +
-          'Selecione pelo menos uma velocidade para exibir o gráfico.' +
-          '</div>';
+          '<div class="no-data-message"> Selecione pelo menos uma velocidade para exibir o gráfico</div>';
         return;
       }
 
