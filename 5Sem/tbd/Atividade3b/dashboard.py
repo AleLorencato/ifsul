@@ -28,8 +28,7 @@ def buscar_dados(db):
     try:
         docs = (
             db.collection('Provedores')
-            .order_by('mensuracao')
-            .limit(3000)
+            .order_by('mensuracao', direction=firestore.Query.DESCENDING)
             .stream()
         )
         dados = [doc.to_dict() for doc in docs]
@@ -129,9 +128,8 @@ def criar_dashboard_unificado_matplotlib(
         2, 2, figsize=(20, 14)
     )
     fig.suptitle(
-        'Dashboard de Análise de '
-        'Assinantes por Velocidade '
-        '(Matplotlib)',
+        'Assinantes de Planos de Internet '
+        'Por Velocidade em Pelotas',
         fontsize=20,
         fontweight='bold'
     )
@@ -260,7 +258,7 @@ def criar_dashboard_unificado_matplotlib(
             color=cores[i]
         )
     ax4.set_title(
-        'Tendência de Crescimento por Categoria',
+        'Crescimento por Categoria',
         fontsize=14,
         fontweight='bold'
     )
@@ -312,7 +310,7 @@ def criar_dashboard_plotly(dados_por_ano, anos_disponiveis):
     fig.update_layout(
         title=(
             'Dashboard Interativo - '
-            'Assinantes por Velocidade (Plotly)'
+            'Assinantes por Velocidade'
         ),
         xaxis_title='Ano',
         yaxis_title='Número de Assinantes',
