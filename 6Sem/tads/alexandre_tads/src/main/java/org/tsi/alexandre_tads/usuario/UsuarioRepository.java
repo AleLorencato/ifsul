@@ -1,6 +1,5 @@
-package org.tsi.alexandre_tads.repository;
+package org.tsi.alexandre_tads.usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.tsi.alexandre_tads.model.Usuario;
 
 import java.util.UUID;
 

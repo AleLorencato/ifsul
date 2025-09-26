@@ -1,6 +1,8 @@
-package org.tsi.alexandre_tads.model;
+package org.tsi.alexandre_tads.carro;
 import lombok.*;
 import jakarta.persistence.*;
+import org.tsi.alexandre_tads.anuncio.Anuncio;
+
 import java.util.Date;
 import java.util.UUID;
 
