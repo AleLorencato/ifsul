@@ -30,9 +30,10 @@ public class Anuncio {
 
 	private Date updatedAt;
 
-	@OneToOne(optional = false, cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL, optional = false, orphanRemoval = true)
 	@JoinColumn(name = "carro_id", unique = true, nullable = false)
 	private Carro carro;
+
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "usuario_id", nullable = false)
