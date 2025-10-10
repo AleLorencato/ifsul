@@ -24,7 +24,6 @@ public class AnuncioResponseDTO {
     private String combustivel;
 
     private UUID usuarioId;
-    private String nomeUsuario;
 
     public static AnuncioResponseDTO fromEntity(Anuncio anuncio) {
         AnuncioResponseDTO dto = new AnuncioResponseDTO();
@@ -48,7 +47,6 @@ public class AnuncioResponseDTO {
 
         if (anuncio.getUsuario() != null) {
             dto.setUsuarioId(anuncio.getUsuario().getId());
-            dto.setNomeUsuario(anuncio.getUsuario().getNome());
         }
 
         return dto;
