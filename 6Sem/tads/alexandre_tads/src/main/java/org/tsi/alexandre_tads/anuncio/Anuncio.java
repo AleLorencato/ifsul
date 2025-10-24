@@ -1,4 +1,5 @@
 package org.tsi.alexandre_tads.anuncio;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import jakarta.persistence.*;
 import org.tsi.alexandre_tads.carro.Carro;
