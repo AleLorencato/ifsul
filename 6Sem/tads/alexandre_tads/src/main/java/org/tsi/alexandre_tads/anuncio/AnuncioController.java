@@ -39,7 +39,7 @@ public class AnuncioController {
 	}
 
     @GetMapping("/{id}")
-    public ResponseEntity<AnuncioResponseDTO> buscarAnuncioPorId(@PathVariable UUID id) {
+    public ResponseEntity<AnuncioResponseDTO> buscarAnuncioPorId(@PathVariable(name="id") UUID id) {
         return anuncioRepository.findById(id)
                 .map(anuncio -> ResponseEntity.ok(AnuncioResponseDTO.fromEntity(anuncio)))
                 .orElse(ResponseEntity.notFound().build());
@@ -86,11 +86,33 @@ public class AnuncioController {
     }
 
 
-    @PutMapping
-	public Anuncio atualizarAnuncio(Anuncio anuncio){
-		return null;
-	}
+	@PutMapping("/{id}")
+	@Transactional
+	public ResponseEntity<AnuncioResponseDTO> atualizarAnuncio(@PathVariable(name="id") UUID id, @RequestBody AnuncioRequestDTO requestDTO){
+		return anuncioRepository.findById(id)
+				.map(anuncioExistente -> {
+					anuncioExistente.setTitulo(requestDTO.getTitulo());
+					anuncioExistente.setDescricao(requestDTO.getDescricao());
+					anuncioExistente.setPreco(requestDTO.getPreco());
+					anuncioExistente.setStatus(requestDTO.getStatus());
+					anuncioExistente.setUpdatedAt(new Date());
 
+					Carro carroExistente = anuncioExistente.getCarro();
+					if (carroExistente == null) {
+						throw new RuntimeException("Carro associado ao anúncio não encontrado.");
+					}
+					carroExistente.setMarca(requestDTO.getMarca());
+					carroExistente.setModelo(requestDTO.getModelo());
+					carroExistente.setCor(requestDTO.getCor());
+					carroExistente.setAno(requestDTO.getAno());
+					carroExistente.setQuilometragem(requestDTO.getQuilometragem());
+					carroExistente.setCombustivel(requestDTO.getCombustivel());
+					carroExistente.setUpdatedAt(new Date());
+					Anuncio anuncioAtualizado = anuncioRepository.save(anuncioExistente);
+					return ResponseEntity.ok(AnuncioResponseDTO.fromEntity(anuncioAtualizado));
+				})
+				.orElse(ResponseEntity.notFound().build());
+	}
 
 
 }
